@@ -30,7 +30,8 @@ fileScanner.prototype = {
             }
         }
         if (res.length>0) {
-            this.cache.push({name:path, path:path, files:res})
+            var p = path.split('/').splice(-1)[0]
+            this.cache.push({name:p, path:path, files:res})
         }
     }
 }

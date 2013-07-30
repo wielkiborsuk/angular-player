@@ -15,7 +15,7 @@ scannerService.prototype = {
 		res.send(fs.rescan(query.bpath))
 	},
     testscan: function (req, res) {
-        res.send(fs.rescan('../519843'))
+        res.send(fs.rescan(util.base+'/upload/'))
     }
 }
 

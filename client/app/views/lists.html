@@ -1,19 +1,27 @@
 <div ng-controller="ListscontrollerCtrl" class="container">
     <div class="row">
+        <audio player ng-ended controls autoplay preload="none">
+          <source src="{{mediabase+active.path+'/'+curr}}" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+    </div>
+    <div class="row">
         <div class="span2">
             <ul class="well nav nav-list">
-                <li class="{{{true:'active', false:'inactive'}[true]}}" ng-repeat="li in lists" ng-click="activate(li)">{{li.name}}</li>
+                <li class="{{{true:'active', false:'inactive'}[li==active]}}" ng-repeat="li in lists">
+                    <a ng-click="activate(li)">
+                        {{li.name}}
+                    </a>
+                </li>
             </ul>
         </div>
-        <div class="span10" ng-show="active.name">
+        <div class="span9" ng-show="active.name">
             <h1>{{active.name}}</h1>
-            <ul>
-                <li ng-repeat="f in active.files">
-                    <audio controls onended="alert(1)" preload="auto">
-                      <source src="f" type="audio/mpeg">
-                      Your browser does not support the audio element.
-                    </audio>
-                    {{f}}
+            <ul class="well nav nav-list">
+                <li ng-repeat="f in active.files" class="{{{true:'active', false:'inactive'}[f==curr]}}">
+                    <a ng-click="select(f)">
+                        {{f}}
+                    </a>
                 </li>
             </ul>
         </div>
