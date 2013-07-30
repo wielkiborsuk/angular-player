@@ -12,7 +12,7 @@ module.exports = {
 	dump: function dump(obj) {
 		console.log(obj);
 		try {
-			for (n in obj) {
+			for (var n in obj) {
 				console.log(n + " : " + obj[n]);
 			}
 		} catch (e) {}
