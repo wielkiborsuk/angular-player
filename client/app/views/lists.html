@@ -1,0 +1,21 @@
+<div ng-controller="ListscontrollerCtrl" class="container">
+    <div class="row">
+        <div class="span2">
+            <ul class="well nav nav-list">
+                <li class="{{{true:'active', false:'inactive'}[true]}}" ng-repeat="li in lists" ng-click="activate(li)">{{li.name}}</li>
+            </ul>
+        </div>
+        <div class="span10" ng-show="active.name">
+            <h1>{{active.name}}</h1>
+            <ul>
+                <li ng-repeat="f in active.files">
+                    <audio controls onended="alert(1)" preload="auto">
+                      <source src="f" type="audio/mpeg">
+                      Your browser does not support the audio element.
+                    </audio>
+                    {{f}}
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
