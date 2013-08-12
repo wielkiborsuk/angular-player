@@ -35,5 +35,6 @@ module.exports = {
 		}
 		return false
 	},
-	base: '../..'
+	base: '../..',
+	defaultpath: '/upload/'
 }

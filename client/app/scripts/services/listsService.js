@@ -8,7 +8,7 @@ angular.module('clientApp')
     // var endpoint = '31.6.70.108:4400'
 
     var base = 'http://'+endpoint+'/static/upload/'
-    var url = 'http://'+endpoint+'/';
+    var url = 'http://'+endpoint+'/player/';
     
     return {
         lists: function () {

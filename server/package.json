@@ -1,8 +1,8 @@
 {
   "name" : "player-server",
   "description" : "nodejs server side of angular player",
-  "version" : "0.1.0",
-  "main" : "./server.js",
+  "version" : "0.4.0",
+  "main" : "./main.js",
   "author" : {
     "name" : "wielki.borsuk",
     "email" : "wielki.borsuk@gmail.com"
@@ -17,10 +17,5 @@
   },
   "bugs" : {
     "web" : ""
-  },
-  "dependencies" : {
-    "express" : ">=3.2.6",
-    "mongodb" : ">=1.3.10"
-  },
-  "bundledDependencies" : ["express"]
+  }
 }
