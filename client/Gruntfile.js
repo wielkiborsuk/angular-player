@@ -230,7 +230,8 @@ module.exports = function (grunt) {
             '.htaccess',
             'bower_components/**/*',
             'images/{,*/}*.{gif,webp}',
-            'styles/fonts/*'
+            'styles/fonts/*',
+            'img/*'
           ]
         }, {
           expand: true,
@@ -328,7 +329,7 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
-  
+
   grunt.registerTask('dist', [
     'jshint',
     'build'

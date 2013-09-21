@@ -2,9 +2,9 @@ var util = require('../util'),
 	fs = require('./fileScanner');
 
 function scannerService() {
-	__scanner = fs
-	defaultpath = util.defaultpath
-	basepath = util.base
+	this.__scanner = fs
+	this.defaultpath = util.defaultpath
+	this.basepath = util.base
 }
 
 scannerService.prototype = {
