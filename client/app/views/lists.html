@@ -1,17 +1,18 @@
-<div ng-controller="ListscontrollerCtrl" class="container">
+<div ng-controller="ListscontrollerCtrl" class="container well">
     <div class="row" ng-show="active.name">
-        <h1 class="span9 offset2">{{active.name}}</h1>
+        <h1 class="offset1">{{active.name}}</h1>
     </div>
     <div class="row" ng-show="active.name">
-        <audio player autoplay preload="metadata" class="span9 offset2">
-          <source src="{{mediabase+active.path+'/'+curr}}" type="audio/mpeg">
-          Your browser does not support the audio element.
-        </audio>
-        <div ng-include="'views/controls.html'"></div>
+      <audio player autoplay preload="metadata" class="span9 offset2">
+        <source src="{{mediabase+active.path+'/'+curr}}" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
     </div>
-    <hr ng-show="active.name" style="margin-right:40px"/>
-    <div class="row">
-        <div class="span2">
+    <div ng-show="active.name" ng-include="'views/controls.html'" class="row"></div>
+
+    <hr ng-show="active.name" style="margin: 10px auto" />
+    <div class="row flex-parent">
+        <div class="span3" style="margin-right: 20px">
             <ul class="well nav nav-list">
                 <li class="{{{true:'active', false:'inactive'}[li==active]}}" ng-repeat="li in lists">
                     <a ng-click="activate(li)" title="{{li.name}}" class="ellipsize">
@@ -20,7 +21,7 @@
                 </li>
             </ul>
         </div>
-        <div class="span9" ng-show="active.name">
+        <div class="spacer" ng-show="active.name">
             <ul class="well nav nav-list list-box">
                 <li ng-repeat="f in active.files" class="{{{true:'active', false:'inactive'}[f==curr]}}">
                     <a ng-click="select(f)">

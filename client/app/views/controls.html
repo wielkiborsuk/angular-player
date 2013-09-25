@@ -1,8 +1,9 @@
-<div class="btn btn-small disabled span7 offset2">
-  <input type="range" id="audio" class="span7" value="0" max="{{gradiation}}" time-changed></input>
+<div class="span12">
+  <div class="btn btn-small disabled input-block-level">
+    <input type="range" id="audio" value="0" max="{{gradiation}}" time-changed></input>
+  </div>
 </div>
-<br/>
-<div class="btn-group span7 offset2">
+<div class="btn-group span12 flex-parent">
   <button type="button" class="btn btn-small" ng-click="prev()">
     <i class="icon-step-backward"></i>
   </button>
@@ -27,8 +28,9 @@
   <button type="button" class="btn btn-small" ng-class="{'btn-inverse': repeat}" ng-click="repeat_toggle()">
     <i class="icon-repeat" ng-class="{'icon-white': repeat}"></i>
   </button>
-  <button type="button" class="btn btn-small" ng-class="{'btn-inverse': muted}" ng-click="mute_toggle()">
-    <i ng-class="{'icon-volume-up': !muted, 'icon-volume-off icon-white': muted}"></i>
+  <span class="btn btn-small disabled spacer"></span>
+  <button type="button" class="btn btn-small" ng-class="{'btn-inverse': muted || player.volume==0}" ng-click="mute_toggle()">
+    <i ng-class="{'icon-volume-up': !muted && player.volume>0, 'icon-volume-off icon-white': muted || player.volume==0}"></i>
   </button>
   <span class="btn btn-small disabled">
     <input type="range" id="volume" value="{{init_volume * 100}}" volume-changed></input>
