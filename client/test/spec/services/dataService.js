@@ -1,18 +1,18 @@
 'use strict';
 
-describe('Service: dataService', function () {
+describe('Service: Dataservice', function () {
 
   // load the service's module
-  beforeEach(module('clientApp'));
+  beforeEach(module('ClientApp'));
 
   // instantiate service
-  var dataService;
-  beforeEach(inject(function (_dataService_) {
-    dataService = _dataService_;
+  var Dataservice;
+  beforeEach(inject(function (_Dataservice_) {
+    Dataservice = _Dataservice_;
   }));
 
   it('should do something', function () {
-    // expect(!!dataService).toBe(true);
+    // expect(!!Dataservice).toBe(true);
   });
 
 });

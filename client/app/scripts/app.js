@@ -1,7 +1,9 @@
 'use strict';
 
-angular.module('clientApp', [])
-  .config(function ($routeProvider) {
+angular.module('clientApp', [
+  'ngResource'
+])
+  .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -10,4 +12,4 @@ angular.module('clientApp', [])
       .otherwise({
         redirectTo: '/'
       });
-  });
+  }]);
