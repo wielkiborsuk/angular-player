@@ -228,10 +228,11 @@ module.exports = function (grunt) {
           src: [
             '*.{ico,png,txt}',
             '.htaccess',
-            'bower_components/**/*',
             'images/{,*/}*.{gif,webp}',
             'styles/fonts/*',
-            '!**/*.jar'
+            'bower_components/**/*',
+            '!bower_components/**/{*.jar,.bower.json,bower.json,package.json,component.json,composer.json}',
+            '!bower_components/**/{test,tests}/**'
           ]
         }, {
           expand: true,
