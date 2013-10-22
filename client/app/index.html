@@ -11,13 +11,13 @@
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
+        <!-- bower:css -->
+        <link rel="stylesheet" href="bower_components/bootstrap-css/css/bootstrap.css" />
+        <!-- endbower -->
+
         <!-- build:css(.tmp) styles/main.css -->
         <link rel="stylesheet" href="styles/main.css">
         <!-- endbuild -->
-
-        <!-- bower:css -->
-        <link rel="stylesheet" href="bower_components/bootstrap-css/css/bootstrap.min.css" />
-        <!-- endbower -->
 </head>
   <body ng-app="clientApp">
     <!--[if lt IE 7]>
@@ -43,7 +43,8 @@
        ga('send', 'pageview');
     </script>
 
-
+    <script src="bower_components/jquery/jquery.min.js"></script>
+    <script src="bower_components/bootstrap-css/js/bootstrap.min.js"></script>
     <script src="bower_components/angular/angular.js"></script>
 
         <!-- build:js scripts/modules.js -->
@@ -53,10 +54,12 @@
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/directives/player.js"></script>
+        <script src="scripts/directives/timeChanged.js"></script>
+        <script src="scripts/directives/volumeChanged.js"></script>
+        <script src="scripts/filters/timeDisplay.js"></script>
+        <script src="scripts/services/dataService.js"></script>
+        <script src="scripts/services/listsService.js"></script>
         <!-- endbuild -->
-
-        <!-- bower:js -->
-        <script src="bower_components/bootstrap-css/js/bootstrap.min.js"></script>
-        <!-- endbower -->
 </body>
 </html>
