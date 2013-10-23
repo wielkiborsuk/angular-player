@@ -1,19 +1,19 @@
 <div class="container well">
-    <div class="row" ng-show="active.name">
-        <h1 class="offset1">{{active.name}}</h1>
+    <div class="row"><!--  ng-show="active.name"> -->
+        <h1 class="text-center">{{active.name}}&nbsp;</h1>
     </div>
-    <div class="row" ng-show="active.name">
+    <div class="row"><!--  ng-show="active.name"> -->
       <audio player autoplay preload="metadata" class="span9 offset2">
         <source src="{{mediabase+active.path+'/'+curr}}" type="audio/mpeg">
         Your browser does not support the audio element.
       </audio>
     </div>
-    <div ng-show="active.name" ng-include="'views/controls.html'" class="row"></div>
+    <div ng-include="'views/controls.html'" class="row"><!--  ng-show="active.name"> --></div>
 
-    <hr ng-show="active.name" style="margin: 10px auto" />
+    <hr style="margin: 10px auto" /><!--  ng-show="active.name" /> -->
     <div class="row flex-parent">
         <div class="span3" style="margin-right: 20px">
-            <ul class="well nav nav-list">
+            <ul class="well nav nav-list list-box">
                 <li class="{{{true:'active', false:'inactive'}[li==active]}}" ng-repeat="li in lists">
                     <a ng-click="activate(li)" title="{{li.name}}" class="ellipsize">
                         {{li.name}}
@@ -21,11 +21,12 @@
                 </li>
             </ul>
         </div>
-        <div class="spacer" ng-show="active.name">
+        <div class="spacer"><!--  ng-show="active.name"> -->
             <ul class="well nav nav-list list-box">
                 <li ng-repeat="f in active.files" class="{{{true:'active', false:'inactive'}[f==curr]}}">
                     <a ng-click="select(f)">
                         {{f}}
+                        <span class="badge pull-right" ng-click="this.hide()">1</span>
                     </a>
                 </li>
             </ul>

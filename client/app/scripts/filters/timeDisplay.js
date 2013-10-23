@@ -12,6 +12,9 @@ angular.module('clientApp')
       var m = Math.floor(s / 60);
       s = s % 60;
 
+      s = (Number.isNaN(s) ? 0 : s);
+      m = (Number.isNaN(m) ? 0 : m);
+
       return padding('00', m) + ':' + padding('00', s);
     };
   });
