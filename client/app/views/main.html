@@ -28,7 +28,7 @@
             <div class="flex-parent">
               <span class="ellipsize spacer">{{f}}</span>
 
-              <span class="badge" ng-class="{'opaque': queue_pos(f)>-1, 'badge-info': queue_pos(f)>-1, 'non-opaque': queue_pos(f)<0}" ng-click="this.enqueue(f, $event)">
+              <span class="badge queue-badge" ng-class="{'opaque': queue_pos(f)>-1, 'badge-info': queue_pos(f)>-1, 'non-opaque': queue_pos(f)<0}" ng-click="this.enqueue(f, $event)">
                 {{queue_pos(f)+1 || '&nbsp;'}}
               </span>
             </div>

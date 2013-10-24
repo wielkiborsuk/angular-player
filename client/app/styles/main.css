@@ -64,8 +64,8 @@ input::-webkit-slider-thumb {
 }
 
 .spacer {
-  flex: 1 1 auto;
-  -webkit-flex: 1 1 auto;
+  flex: 1 1 0;
+  -webkit-flex: 1 1 0;
 }
 
 .list-box {
@@ -79,6 +79,10 @@ input::-webkit-slider-thumb {
 
 .opaque {
   opacity: 1;
+}
+
+.queue-badge {
+  cursor: pointer;
 }
 
 /*
