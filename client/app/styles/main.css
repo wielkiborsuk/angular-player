@@ -72,6 +72,15 @@ input::-webkit-slider-thumb {
   height: 560px;
   overflow: auto;
 }
+
+.non-opaque {
+  opacity: 0.1;
+}
+
+.opaque {
+  opacity: 1;
+}
+
 /*
 ::-webkit-scrollbar {
   height: 16px;

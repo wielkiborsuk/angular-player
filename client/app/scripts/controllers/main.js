@@ -4,6 +4,7 @@ angular.module('clientApp')
   .controller('MainCtrl', ['$scope', 'listsService', '$rootScope', function ($scope, listsService, $rootScope) {
     $scope.active = {}
     $scope.curr = ''
+    $scope.song_queue = []
     $scope.mediabase = listsService.base
     $rootScope.gradiation = 1000
     $scope.init_volume = 0.1
@@ -20,6 +21,7 @@ angular.module('clientApp')
 
     $scope.activate = function (li) {
         $scope.active = li;
+        $scope.song_queue.splice(0, $scope.song_queue.length);
         $scope.select(li.files[0]);
     }
 
@@ -27,7 +29,20 @@ angular.module('clientApp')
         $scope.curr = f;
         $scope.player.src = $scope.mediabase+$scope.active.path+'/'+f;
         $scope.player.load();
-        $scope.player = $scope.player
+        $scope.player = $scope.player;
+        if ($scope.queue_pos(f)>-1) {
+          $scope.song_queue.splice($scope.queue_pos(f), 1);
+        }
+    }
+
+    $scope.enqueue = function (f, $event) {
+      if ($scope.song_queue.indexOf(f)<0)
+        $scope.song_queue.push(f);
+      $event.stopPropagation();
+    }
+
+    $scope.queue_pos = function (f) {
+      return $scope.song_queue.indexOf(f);
     }
 
     $scope.manifest = function () {
@@ -37,7 +52,10 @@ angular.module('clientApp')
     $scope.next = function () {
       if ($scope.active.files) {
         var i = $scope.active.files.indexOf($scope.curr);
-        if ($scope.random) {
+
+        if ($scope.song_queue.length>0) {
+          $scope.select($scope.song_queue[0]);
+        } else if ($scope.random) {
           $scope.select($scope.active.files[Math.floor(Math.random() * $scope.active.files.length)])
         } else {
           if (i > -1 && i+1<$scope.active.files.length) {
