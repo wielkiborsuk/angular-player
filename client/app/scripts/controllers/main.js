@@ -32,12 +32,31 @@ angular.module('clientApp')
         $scope.player = $scope.player;
         if ($scope.queue_pos(f)>-1) {
           $scope.song_queue.splice($scope.queue_pos(f), 1);
+          if ($scope.repeat) {
+            $scope.song_queue.push(f);
+          }
         }
     }
 
+    $scope.queue_toggle = function (f, $event) {
+      if ($scope.queue_pos(f)>-1) {
+        $scope.dequeue(f, $event);
+      } else {
+        $scope.enqueue(f, $event);
+      }
+    }
+
     $scope.enqueue = function (f, $event) {
-      if ($scope.song_queue.indexOf(f)<0)
+      if ($scope.song_queue.indexOf(f)<0) {
         $scope.song_queue.push(f);
+      }
+      $event.stopPropagation();
+    }
+
+    $scope.dequeue = function (f, $event) {
+      if ($scope.song_queue.indexOf(f)>-1) {
+        $scope.song_queue.splice($scope.queue_pos(f), 1);
+      }
       $event.stopPropagation();
     }
 
