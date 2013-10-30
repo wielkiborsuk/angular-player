@@ -7,6 +7,24 @@ angular.module('clientApp')
         // console.log(element)
         $rootScope.player = element[0];
         $rootScope.player.volume = scope.init_volume;
+        var getGradient = function(played, loaded) {
+          var res = '-webkit-gradient(linear, left top, right bottom, ';
+          res += 'color-stop(0, #444444), color-stop({played}, #444444), ';
+          res += 'color-stop({played}, #999999), color-stop({loaded}, #999999), ';
+          res += 'color-stop({loaded}, #c2c2c2), color-stop(1, #c2c2c2))';
+          return res.replace(/{played}/g, played).replace(/{loaded}/g, loaded);
+            // .replace(/{played2}/g, played+0.01).replace(/{loaded2}/g, loaded+0.01);
+        }
+
+        var seekUpdate = function (player, seekbar) {
+          var dur = player.duration,
+              time = player.currentTime,
+              buff = player.buffered && player.buffered.length>0 ? player.buffered.end(0) : 0;
+
+          var loaded = Math.min(buff/dur, 1);
+          var played = Math.min(time/dur, loaded, 1);
+          seekbar.style.background = getGradient(played, loaded);
+        }
 
         element.bind('ended', function () {
           scope.$apply(function () {
@@ -22,7 +40,11 @@ angular.module('clientApp')
             scope.time = element[0].currentTime
             scope.duration = element[0].duration
           })
+          seekUpdate($rootScope.player, $rootScope.timer);
+        })
 
+        element.bind('progress', function () {
+          seekUpdate($rootScope.player, $rootScope.timer);
         })
 
         element.bind('volumechange', function () {
