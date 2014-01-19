@@ -25,7 +25,8 @@ fileScanner.prototype = {
             } else if (fs.statSync(bpath+sep+path+sep+f)) {
                 var t = f.split('.').splice(-1)[0]
                 if (this.formats.indexOf(t)>-1) {
-                    res.push(f)
+                  var tf = {name: f, path: path+'/'+f};
+                  res.push(tf)
                 }
             }
         }

@@ -32,16 +32,30 @@ input::-webkit-slider-thumb {
     color-stop(0.49, #333333), color-stop(0.51, #3e3e3e), color-stop(1, #6e6e6e));
 }
 
+.btn-group-full {
+  width: 100%;
+  margin-left: 0px;
+}
+
+.btn-wide {
+  width: 50%;
+}
+
 .input-block-level {
   min-height: 0px;
 }
 
-.flex-parent {
+.flex-parent, .flex-parent-vertical {
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
+}
+
+.flex-parent-vertical {
+  flex-flow: column;
+  -webkit-flex-flow: column;
 }
 
 .spacer {
@@ -52,6 +66,13 @@ input::-webkit-slider-thumb {
 
 .list-box {
   height: 560px;
+  overflow: auto;
+  cursor: default;
+}
+
+.nav-box {
+  height: 600px;
+  margin-right: 20px;
   overflow: auto;
   cursor: default;
 }
@@ -68,6 +89,15 @@ input::-webkit-slider-thumb {
   cursor: pointer;
 }
 
+#new_name {
+  width: 155px;
+}
+
+.clickable {
+  cursor: pointer;
+  margin-left: 20px;
+  margin-right: 20px;
+}
 
 ::-webkit-scrollbar {
   height: 8px;

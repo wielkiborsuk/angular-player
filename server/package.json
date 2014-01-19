@@ -1,21 +1,21 @@
 {
-  "name" : "player-server",
-  "description" : "nodejs server side of angular player",
-  "version" : "0.4.0",
-  "main" : "./main.js",
-  "author" : {
-    "name" : "wielki.borsuk",
-    "email" : "wielki.borsuk@gmail.com"
+  "name": "player-server",
+  "description": "nodejs server side of angular player",
+  "version": "0.4.0",
+  "main": "./main.js",
+  "author": {
+    "name": "wielki.borsuk",
+    "email": "wielki.borsuk@gmail.com"
   },
-  "keywords" : [ ],
-  "licenses" : {
-    "type" : "none"
+  "keywords": [],
+  "licenses": {
+    "type": "none"
   },
-  "repository" : {
-    "type" : "git",
-    "url" : "git://git@bitbucket.org:wielkiborsuk/angular-player.git"
+  "repository": {
+    "type": "git",
+    "url": "git://git@bitbucket.org:wielkiborsuk/angular-player.git"
   },
-  "bugs" : {
-    "web" : ""
+  "dependencies": {
+    "nedb": "~0.9.3"
   }
 }

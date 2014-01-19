@@ -3,33 +3,43 @@
 angular.module('clientApp')
   .controller('MainCtrl', ['$scope', 'listsService', '$rootScope', function ($scope, listsService, $rootScope) {
     $scope.active = {}
+    $scope.active_type = '';
     $scope.curr = ''
     $scope.song_queue = []
+    $scope.new_list = {};
     $scope.mediabase = listsService.base
     $rootScope.gradiation = 1000
     $scope.init_volume = 0.1
 
-    $scope.muted = false
-    $scope.random = false
-    $scope.repeat = false
+    $scope.muted = false;
+    $scope.random = false;
+    $scope.repeat = false;
+    $scope.edit = false;
+
+    $scope.listview = 'files';
+//  $scope.listview = 'lists';
 
     listsService.smscan().then(function (res) {
-        listsService.lists().then(function (res) {
-            $scope.lists = res.data;
+        listsService.scanned().then(function (res) {
+            $scope.mediadirs = res.data;
         })
     })
 
+    listsService.list_list().then(function (res) {
+      $scope.lists = res.data;
+    });
+
     $scope.activate = function (li) {
         $scope.active = li;
+        $scope.active_type = $scope.listview;
         $scope.song_queue.splice(0, $scope.song_queue.length);
         $scope.select(li.files[0]);
     }
 
     $scope.select = function (f) {
         $scope.curr = f;
-        $scope.player.src = $scope.mediabase+$scope.active.path+'/'+f;
+        $scope.player.src = (f ? $scope.mediabase+f.path : null);
         $scope.player.load();
-        $scope.player = $scope.player;
         if ($scope.queue_pos(f)>-1) {
           $scope.song_queue.splice($scope.queue_pos(f), 1);
           if ($scope.repeat) {
@@ -62,10 +72,6 @@ angular.module('clientApp')
 
     $scope.queue_pos = function (f) {
       return $scope.song_queue.indexOf(f);
-    }
-
-    $scope.manifest = function () {
-        alert('this is the manifest')
     }
 
     $scope.next = function () {
@@ -133,5 +139,60 @@ angular.module('clientApp')
 
     $scope.repeat_toggle = function () {
       $scope.repeat = !$scope.repeat
+    }
+
+    $scope.edit_toggle = function () {
+      $scope.edit = !$scope.edit;
+    }
+
+
+    $scope.list_add = function () {
+      if ($scope.new_list.name) {
+        var tmp_list = $scope.new_list;
+        $scope.new_list = {};
+        tmp_list.files = [];
+        $scope.lists.push(tmp_list);
+        listsService.list_create(tmp_list).success(function (res) {
+          tmp_list._id = res;
+        });
+      } else {
+        alert('Cant insert a list with no name.');
+      }
+    };
+
+    $scope.list_delete = function(li, $event) {
+      $event.stopPropagation();
+      if (li) {
+        if (li._id) {
+          listsService.list_delete(li._id).success(function(res) {
+            arr_del($scope.lists, li);
+          });
+        } else {
+          arr_del($scope.lists, li);
+        }
+      }
+    };
+
+    $scope.list_push = function(li, f) {
+      if (li && li._id && li.files.indexOf(f)<0) {
+        li.files.push(f);
+        listsService.list_put(li._id, li);
+      }
+    };
+
+    $scope.list_pop = function(li, f, $event) {
+      if (li && f) {
+        arr_del(li.files, f);
+        if (li._id) {
+          listsService.list_put(li._id, li);
+        }
+      }
+    };
+
+    function arr_del(arr, obj) {
+      var idx = arr.indexOf(obj);
+      if (idx > -1) {
+        arr.splice(idx, 1);
+      }
     }
   }]);

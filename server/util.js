@@ -35,6 +35,10 @@ module.exports = {
 		}
 		return false
 	},
+  req_match: function req_match(req, regexp, method) {
+    return regexp.test(req.path) && method==req.method
+  },
 	base: '../..',
-	defaultpath: '/upload/'
+	defaultpath: '/upload/',
+  collectionfile: 'playlist.db'
 }

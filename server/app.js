@@ -1,6 +1,6 @@
 var express = require('express'),
-	routes = require('./routes'),
-	util = require('./util');
+	util = require('./util'),
+  player = require('./main');
 
 var app = express();
 
@@ -9,8 +9,8 @@ app.configure(function () {
 	app.use(express.bodyParser())
 	app.use(express.methodOverride())
 	app.use(express.cookieParser())
-	app.use('/static', express.static(util.base))
-	app.use('/static', express.directory(util.base, {icons:true}))
+	app.use('/www', express.static(util.base))
+	app.use('/www', express.directory(util.base, {icons:true}))
 
 	app.all('*', function (req, res, next) {
 		res.header('Access-Control-Allow-Origin', '*');
@@ -23,7 +23,7 @@ app.configure(function () {
 		}
 	})
 
-	routes(app)
+  app.use(player({basepath: util.base, defaultpath: util.defaultpath}));
 	app.use(function (req, res) {
 		res.send(404)
 	})

@@ -16,9 +16,9 @@ scannerService.prototype = {
         var query = req.body
 		res.send(fs.rescan(this.basepath + query.bpath))
 	},
-    testscan: function (req, res) {
-        res.send(fs.rescan(this.basepath + this.defaultpath))
-    }
+  testscan: function (req, res) {
+      res.send(fs.rescan(this.basepath + this.defaultpath))
+  }
 }
 
 module.exports = new scannerService()
