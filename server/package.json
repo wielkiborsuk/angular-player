@@ -1,7 +1,7 @@
 {
   "name": "player-server",
   "description": "nodejs server side of angular player",
-  "version": "0.4.0",
+  "version": "0.6.0",
   "main": "./main.js",
   "author": {
     "name": "wielki.borsuk",

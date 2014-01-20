@@ -174,7 +174,7 @@ angular.module('clientApp')
     };
 
     $scope.list_push = function(li, f) {
-      if (li && li._id && li.files.indexOf(f)<0) {
+      if ($scope.edit && li && li._id && li.files.indexOf(f)<0) {
         li.files.push(f);
         listsService.list_put(li._id, li);
       }
