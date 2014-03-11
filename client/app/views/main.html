@@ -19,32 +19,36 @@
           <li class="btn btn-small spacer" ng-class="{'active':listview=='lists'}" ng-click="listview='lists'">lists</li>
         </ul>
       </div>
-      <ul class="well nav nav-list spacer" ng-show="listview=='files'">
-        <li ng-class="{'active': li==active, 'inactive': li!=active}" ng-repeat="li in mediadirs">
-          <a ng-click="activate(li)" title="{{li.name}}" class="ellipsize">
-            {{li.name}}
-          </a>
-        </li>
-      </ul>
+      <div class="scrolled well spacer" style="margin-bottom:0px;" ng-show="listview=='files'" perfect-scrollbar>
+        <ul class="nav nav-list">
+          <li ng-class="{'active': li==active, 'inactive': li!=active}" ng-repeat="li in mediadirs">
+            <a ng-click="activate(li)" title="{{li.name}}" class="ellipsize">
+              {{li.name}}
+            </a>
+          </li>
+        </ul>
+      </div>
       <div class="input-append" ng-show="listview=='lists' && edit">
         <input type="text" name="newName" id="new_name" ng-model="new_list.name" />
         <button type="button" class="btn" ng-click="list_add()">Add</button>
       </div>
-      <ul class="nav nav-list well spacer" ng-show="listview=='lists'">
-        <li ng-class="{'active': li==active}" ng-repeat="li in lists">
-          <a ng-click="activate(li)" title="{{li.name}}" f-drop drop="li">
-            <div class="flex-parent">
-              <span class="ellipsize spacer">{{li.name}}</span>
-              <div ng-show="edit">
-                <i class="icon-trash clickable" ng-click="list_delete(li, $event)"></i>
+      <div class="scrolled well spacer" style="margin-bottom:0px;" ng-show="listview=='lists'" perfect-scrollbar>
+        <ul class="nav nav-list">
+          <li ng-class="{'active': li==active}" ng-repeat="li in lists">
+            <a ng-click="activate(li)" title="{{li.name}}" f-drop drop="li">
+              <div class="flex-parent">
+                <span class="ellipsize spacer">{{li.name}}</span>
+                <div ng-show="edit">
+                  <i class="icon-trash clickable" ng-click="list_delete(li, $event)"></i>
+                </div>
               </div>
-            </div>
-          </a>
-        </li>
-      </ul>
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
-    <div class="spacer">
-      <ul class="well nav nav-list list-box">
+    <div class="spacer well list-box scrolled" perfect-scrollbar>
+      <ul class="nav nav-list">
         <li ng-repeat="f in active.files" ng-class="{'active': f==curr}">
           <a ng-click="select(f)" f-drag drag="f">
             <div class="flex-parent">

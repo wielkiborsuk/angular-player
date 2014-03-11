@@ -66,15 +66,22 @@ input::-webkit-slider-thumb {
 
 .list-box {
   height: 560px;
-  overflow: auto;
   cursor: default;
+  margin-bottom: 0px;
+  /*position: relative;*/
 }
 
 .nav-box {
   height: 600px;
   margin-right: 20px;
-  overflow: auto;
   cursor: default;
+  margin-bottom: 0px;
+  /*position: relative;*/
+}
+
+.scrolled {
+  overflow: hidden;
+  position: relative;
 }
 
 .non-opaque {
@@ -98,7 +105,7 @@ input::-webkit-slider-thumb {
   margin-left: 20px;
   margin-right: 20px;
 }
-
+/*
 ::-webkit-scrollbar {
   height: 8px;
   overflow: visible;
@@ -131,3 +138,5 @@ input::-webkit-slider-thumb {
 ::-webkit-scrollbar-corner {
   background: transparent;
 }
+*/
+

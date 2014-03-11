@@ -16,6 +16,9 @@
     "url": "git://git@bitbucket.org:wielkiborsuk/angular-player.git"
   },
   "dependencies": {
-    "nedb": "~0.9.3"
+    "nedb": "^0.9.4"
+  },
+  "devDependencies": {
+    "express": "^3.5.0"
   }
 }
