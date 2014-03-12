@@ -35,6 +35,7 @@ input::-webkit-slider-thumb {
 .btn-group-full {
   width: 100%;
   margin-left: 0px;
+  margin-bottom: 10px;
 }
 
 .btn-wide {
@@ -53,12 +54,25 @@ input::-webkit-slider-thumb {
   display: flex;
 }
 
+.flex-parent {
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
 .flex-parent-vertical {
-  flex-flow: column;
-  -webkit-flex-flow: column;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
 }
 
 .spacer {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
   -webkit-flex: 1 1 0;
   -ms-flex: 1 1 0;
   flex: 1 1 0;
@@ -68,7 +82,11 @@ input::-webkit-slider-thumb {
   height: 560px;
   cursor: default;
   margin-bottom: 0px;
-  /*position: relative;*/
+}
+
+.nav-list {
+  padding-left: 0px;
+  padding-right: 0px;
 }
 
 .nav-box {
@@ -76,12 +94,16 @@ input::-webkit-slider-thumb {
   margin-right: 20px;
   cursor: default;
   margin-bottom: 0px;
-  /*position: relative;*/
 }
 
 .scrolled {
   overflow: hidden;
   position: relative;
+}
+
+.scroll-parent {
+  margin-bottom: 0px;
+  padding-right: 10px;
 }
 
 .non-opaque {
@@ -97,7 +119,9 @@ input::-webkit-slider-thumb {
 }
 
 #new_name {
-  width: 155px;
+  width: 164px;
+  height: 16px;
+  font-size: 13px;
 }
 
 .clickable {

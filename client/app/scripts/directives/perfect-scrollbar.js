@@ -10,9 +10,6 @@ angular.module('clientApp')
           wheelPropagation: $parse($attr.wheelPropagation)() || false,
           minScrollbarLength: $parse($attr.minScrollbarLength)() || false,
           useBothWheelAxes: $parse($attr.useBothWheelAxes)() || false,
-          includePadding: true,
-          scrollXMarginOffset: 20,
-          scrollYMarginOffset: 20,
           suppressScrollX: $parse($attr.suppressScrollX)() || false,
           suppressScrollY: $parse($attr.suppressScrollY)() || false
         });
