@@ -18,7 +18,7 @@
           <button class="btn btn-small spacer" ng-class="{'active':listview=='lists'}" ng-click="listview='lists'">lists</button>
       </div>
       <div class="flex-parent-vertical well spacer scroll-parent" ng-show="listview=='files'" >
-        <div class="scrolled spacer" perfect-scrollbar>
+        <div class="scrolled spacer" perfect-scrollbar refresh-on-change="mediadirs+mediadirs.length">
           <ul class="nav nav-list">
             <li ng-class="{'active': li==active, 'inactive': li!=active}" ng-repeat="li in mediadirs">
               <a ng-click="activate(li)" title="{{li.name}}" class="ellipsize">
@@ -33,7 +33,7 @@
         <button type="button" class="btn btn-small" ng-click="list_add()">Add</button>
       </div>
       <div class="well spacer flex-parent-vertical scroll-parent" ng-show="listview=='lists'">
-        <div class="scrolled spacer" perfect-scrollbar>
+        <div class="scrolled spacer" perfect-scrollbar refresh-on-change="lists+lists.length">
           <ul class="nav nav-list">
             <li ng-class="{'active': li==active}" ng-repeat="li in lists">
               <a ng-click="activate(li)" title="{{li.name}}" f-drop drop="li">
@@ -50,7 +50,7 @@
       </div>
     </div>
     <div class="spacer well list-box flex-parent-vertical scroll-parent">
-      <div class="scrolled spacer" perfect-scrollbar>
+      <div class="scrolled spacer" perfect-scrollbar refresh-on-change="active+active.files.length">
         <ul class="nav nav-list">
           <li ng-repeat="f in active.files" ng-class="{'active': f==curr}">
             <a ng-click="select(f)" f-drag drag="f">

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('clientApp')
-  .directive('perfectScrollbar', function ($parse) {
+  .directive('perfectScrollbar', function ($parse, $timeout) {
     return {
       restrict: 'A',
       link: function($scope, $elem, $attr) {
@@ -15,15 +15,15 @@ angular.module('clientApp')
         });
 
         if ($attr.refreshOnChange) {
-          $scope.$watchCollection($attr.refreshOnChange, function(newNames, oldNames) {
+          $scope.$watch($attr.refreshOnChange, function(newVal, oldVal) {
             // I'm not crazy about setting timeouts but it sounds like thie is unavoidable per
             // http://stackoverflow.com/questions/11125078/is-there-a-post-render-callback-for-angular-js-directive
-            setTimeout(function() { $elem.perfectScrollbar('update'); }, 10);
+            $timeout(function() { $elem.perfectScrollbar('update'); }, 10);
           });
         }
+
+        //if the above listening solution stops working for some reason, this is always a workaround :)
+        //setInterval(function () { $elem.perfectScrollbar('update'); }, 500);
       }
-      //link: function postLink(scope, element, attrs) {
-        //element.text('this is the perfectScrollbar directive');
-      //}
     };
   });

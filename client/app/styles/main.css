@@ -84,11 +84,6 @@ input::-webkit-slider-thumb {
   margin-bottom: 0px;
 }
 
-.nav-list {
-  padding-left: 0px;
-  padding-right: 0px;
-}
-
 .nav-box {
   height: 600px;
   margin-right: 20px;
@@ -103,7 +98,8 @@ input::-webkit-slider-thumb {
 
 .scroll-parent {
   margin-bottom: 0px;
-  padding-right: 10px;
+  padding-right: 0px;
+  padding-left: 0px;
 }
 
 .non-opaque {

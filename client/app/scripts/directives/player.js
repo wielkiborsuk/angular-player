@@ -21,8 +21,8 @@ angular.module('clientApp')
               time = player.currentTime,
               buff = player.buffered && player.buffered.length>0 ? player.buffered.end(0) : 0;
 
-          var loaded = Math.min(buff/dur, 1);
-          var played = Math.min(time/dur, loaded, 1);
+          var loaded = Math.min(buff/dur||0, 1);
+          var played = Math.min(time/dur||0, loaded, 1);
           seekbar.style.background = getGradient(played, loaded);
         }
 
@@ -33,7 +33,7 @@ angular.module('clientApp')
         })
 
         element.bind('timeupdate', function () {
-          var val = ($rootScope.gradiation / element[0].duration) * element[0].currentTime
+          var val = ($rootScope.gradiation / element[0].duration || 1) * element[0].currentTime
 
           $rootScope.timer.value = val
           scope.$apply(function () {
