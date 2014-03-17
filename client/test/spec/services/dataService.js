@@ -1,18 +1,21 @@
 'use strict';
 
-describe('Service: Dataservice', function () {
+describe('Service: dataservice', function () {
 
-  // load the service's module
-  beforeEach(module('ClientApp'));
+  beforeEach(module('clientApp'));
 
-  // instantiate service
-  var Dataservice;
-  beforeEach(inject(function (_Dataservice_) {
-    Dataservice = _Dataservice_;
+  var dataService;
+  beforeEach(inject(function (_dataService_) {
+    dataService = _dataService_;
   }));
 
-  it('should do something', function () {
-    // expect(!!Dataservice).toBe(true);
+  it('should be successfuly created', function () {
+     expect(dataService).toBeTruthy();
+  });
+
+  it('should defined the key configuration values for the application', function () {
+     expect(dataService.endpoint_url).toBeTruthy();
+     expect(dataService.upload_base_url).toBeTruthy();
   });
 
 });
