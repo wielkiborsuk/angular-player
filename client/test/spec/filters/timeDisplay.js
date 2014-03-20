@@ -15,8 +15,16 @@ describe('Filter: timeDisplay', function () {
   }));
 
   it('should gracefully handle empty time frame', function () {
-    // expect(timeDisplay(text)).toBe('timeDisplay filter: ' + text);
     expect(timeDisplay(t1-t1)).toEqual('00:00');
+  });
+
+  it('should handle negative values', function () {
+    expect(timeDisplay(t2-t1)).toEqual(timeDisplay(t1-t2));
+  });
+
+  it('should calculate the right h:m:s values', function () {
+    expect(timeDisplay(t2-t1)).toEqual('03:02');
+    expect(timeDisplay(t3-t1)).toEqual('49:02:04');
   });
 
 });
