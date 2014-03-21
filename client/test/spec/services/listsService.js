@@ -45,6 +45,9 @@ describe('Service: listsservice', function () {
   });
 
   it('should execute http calls to (re)scan song directory', function () {
+    httpBackend.expectGET(url+'scanned/');
+    httpBackend.expectPOST(url+'rescan/', 'path');
+    httpBackend.expectGET(url+'smscan/');
     listsService.scanned().then(function (res) {
       var data = res.data;
       expect(data).toBeTruthy();
@@ -61,12 +64,15 @@ describe('Service: listsservice', function () {
     });
 
     httpBackend.flush();
-    httpBackend.expectGET(url+'smscan/');
-    httpBackend.expectGET(url+'scanned/');
-    httpBackend.expectPOST(url+'rescan/', 'path');
   });
 
   it('should execute CRUD calls to lists service on the backend', function () {
+    httpBackend.expectGET(url+'list/');
+    httpBackend.expectPOST(url+'list/', {});
+    httpBackend.expectGET(url+'list/1');
+    httpBackend.expectPUT(url+'list/1', {});
+    httpBackend.expectDELETE(url+'list/1');
+
     listsService.list_list().then(function (res) {
       var data = res.data;
       expect(res.status).toBe(200);
@@ -99,12 +105,6 @@ describe('Service: listsservice', function () {
     });
 
     httpBackend.flush();
-
-    httpBackend.expectGET(url+'list/');
-    httpBackend.expectGET(url+'list/1');
-    httpBackend.expectPOST(url+'list/', {});
-    httpBackend.expectPUT(url+'list/1', {});
-    httpBackend.expectDELETE(url+'list/1');
   });
 
 });
