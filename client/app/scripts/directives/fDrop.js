@@ -16,9 +16,9 @@ angular.module('clientApp')
       evt.preventDefault();
       element.removeClass(dropStyle);
     };
-    
+
     return {
-      //restrict: 'A',
+      restrict: 'A',
       link: function(scope, element, attrs)  {
         scope.dropData = scope[attrs["drop"]];
         scope.dropStyle = attrs["dropstyle"];

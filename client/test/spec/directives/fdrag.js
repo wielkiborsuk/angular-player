@@ -7,11 +7,23 @@ describe('Directive: fDrag', function () {
 
   var element,
     comp,
+    dragstartEvent,
+    dragendEvent,
     scope;
 
   beforeEach(inject(function ($rootScope, $compile) {
     scope = $rootScope.$new();
     comp = $compile;
+
+    dragstartEvent = jQuery.Event('dragstart');
+    dragstartEvent.originalEvent = {dataTransfer: {
+      effectAllowed: 'drag', 
+      setData: function(key,val) { }
+    }};
+
+    dragendEvent = jQuery.Event('dragend');
+
+    spyOn(dragstartEvent.originalEvent.dataTransfer, 'setData');
   }));
 
   it('should add all drag-related attributes and binds to an object', function () {
@@ -45,6 +57,12 @@ describe('Directive: fDrag', function () {
     element = angular.element('<div f-drag drag="el" dragstyle="highlight"></div>');
     element = comp(element)(scope);
 
-    element.triggerHandler('dragstart');
+    element.triggerHandler(dragstartEvent);
+    expect(element.hasClass('highlight')).toBe(true);
+    expect(dragstartEvent.originalEvent.dataTransfer.setData).toHaveBeenCalledWith('file', JSON.stringify('hohoho'));
+    expect(dragstartEvent.originalEvent.dataTransfer.effectAllowed).toEqual('move');
+
+    element.triggerHandler(dragendEvent);
+    expect(element.hasClass('highlight')).toBe(false);
   });
 });
