@@ -9,9 +9,9 @@ describe('Filter: timeDisplay', function () {
   beforeEach(inject(function ($filter) {
     timeDisplay = $filter('timeDisplay');
 
-    t1 = new Date('2014-01-01T01:01:01.000Z').valueOf();
-    t2 = new Date('2014-01-01T01:04:03.000Z').valueOf();
-    t3 = new Date('2014-01-03T02:03:05.000Z').valueOf();
+    t1 = Math.round(new Date('2014-01-01T01:01:01.000Z').valueOf()/1000);
+    t2 = Math.round(new Date('2014-01-01T01:04:03.000Z').valueOf()/1000);
+    t3 = Math.round(new Date('2014-01-03T02:03:05.000Z').valueOf()/1000);
   }));
 
   it('should gracefully handle empty time frame', function () {
