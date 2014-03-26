@@ -124,7 +124,58 @@ describe('Controller: MainCtrl', function () {
     expect(scope.song_queue).toBeTruthy();
     expect(scope.song_queue.length).toBe(0);
 
+    var lst = scope.mediadirs[0];
+    scope.enqueue(lst.files[1], event);
+    expect(scope.song_queue.length).toBe(1);
+    expect(event.stopPropagation.calls.length).toBe(1);
 
-    expect(1).toBe(2);
+    scope.enqueue(lst.files[1], event);
+    expect(scope.song_queue.length).toBe(1);
+    expect(event.stopPropagation.calls.length).toBe(2);
+
+    scope.dequeue(lst.files[1], event);
+    expect(scope.song_queue.length).toBe(0);
+    expect(event.stopPropagation.calls.length).toBe(3);
+
+    scope.dequeue(lst.files[1], event);
+    expect(scope.song_queue.length).toBe(0);
+    expect(event.stopPropagation.calls.length).toBe(4);
+  });
+
+  it('can calculate files position in song_queue', function () {
+    expect(scope.song_queue.length).toBe(0);
+
+    var lst = scope.mediadirs[0];
+    scope.enqueue(lst.files[0], event);
+    scope.enqueue(lst.files[1], event);
+
+    expect(scope.queue_pos(lst.files[1])).toBe(1);
+    expect(scope.queue_pos(lst.files[0])).toBe(0);
+
+    scope.dequeue(lst.files[0], event);
+
+    expect(scope.queue_pos(lst.files[1])).toBe(0);
+    expect(scope.queue_pos(lst.files[0])).toBe(-1);
+  });
+
+  it('selects next song in active list after "scope.next" call', function () {
+    var lst = scope.mediadirs[0];
+    scope.activate(lst);
+    expect(scope.curr).toEqual(lst.files[0]);
+
+    scope.next();
+    expect(scope.curr).toEqual(lst.files[1]);
+
+    scope.next();
+    expect(scope.curr).toEqual(lst.files[1]);
+  });
+
+  it('selects first song after last if "repeat" is true', function () {
+    var lst = scope.mediadirs[0];
+    scope.activate(lst);
+    scope.select(lst.files[1]);
+    scope.repeat = true;
+    scope.next();
+    expect(scope.curr).toEqual(lst.files[0]);
   });
 });
