@@ -15,6 +15,7 @@ angular.module('clientApp')
     $scope.random = false;
     $scope.repeat = false;
     $scope.edit = false;
+    $scope.paused = true;
 
     $scope.listview = 'files';
 //  $scope.listview = 'lists';
@@ -100,6 +101,8 @@ angular.module('clientApp')
         } else {
           if (i > -1 && i > 0) {
             $scope.select($scope.active.files[i-1])
+          } else if ($scope.repeat) {
+            $scope.select($scope.active.files[$scope.active.files.length-1]);
           }
         }
       }
@@ -107,17 +110,18 @@ angular.module('clientApp')
 
     $scope.play_pause = function () {
       if ($scope.player.paused) {
-        $scope.player.play()
-        $scope.paused = false
+        $scope.player.play();
+        $scope.paused = false;
       } else {
-        $scope.player.pause()
-        $scope.paused = true
+        $scope.player.pause();
+        $scope.paused = true;
       }
     }
 
     $scope.stop = function () {
-      $scope.player.pause()
-      $scope.player.currentTime = 0
+      $scope.player.pause();
+      $scope.paused = true;
+      //$scope.player.currentTime = 0;
     }
 
     $scope.ff = function () {

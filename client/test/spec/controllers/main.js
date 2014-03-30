@@ -51,11 +51,14 @@ describe('Controller: MainCtrl', function () {
 
     player = {
       load: function () { },
-      play: function () { },
-      pause: function () { },
-      stop: function () { }
+      play: function () { player.paused = false; },
+      pause: function () { player.pause = true; },
+      stop: function () { },
+      paused: true
     };
     spyOn(player, 'load');
+    spyOn(player, 'play').andCallThrough();
+    spyOn(player, 'pause').andCallThrough();
 
     event = {
       stopPropagation: function () {}
@@ -177,5 +180,50 @@ describe('Controller: MainCtrl', function () {
     scope.repeat = true;
     scope.next();
     expect(scope.curr).toEqual(lst.files[0]);
+  });
+
+  it('selects previous song on "scope.prev" call', function () {
+    var lst = scope.mediadirs[0];
+    scope.activate(lst);
+    expect(scope.curr).toEqual(lst.files[0]);
+
+    scope.select(lst.files[1]);
+    expect(scope.curr).toEqual(lst.files[1]);
+
+    scope.prev();
+    expect(scope.curr).toEqual(lst.files[0]);
+
+    scope.prev();
+    expect(scope.curr).toEqual(lst.files[0]);
+  });
+
+  it('selects last song when "prev" is called on first one', function () {
+    var lst = scope.mediadirs[0];
+    scope.activate(lst);
+
+    expect(scope.curr).toEqual(lst.files[0]);
+    scope.repeat = true;
+    scope.prev();
+
+    expect(scope.curr).toEqual(lst.files[1]);
+  });
+
+  it('changes the player state on play/pause/stop actions', function () {
+    expect(scope.player.paused).toBe(true);
+    expect(scope.paused).toBe(true);
+
+    //var lst = scope.mediadirs[0];
+    //scope.activate(lst);
+    scope.play_pause();
+    expect(scope.player.paused).toBe(false);
+    expect(scope.paused).toBe(false);
+
+    //scope.stop();
+    //expect(scope.player.paused).toBe(true);
+    //expect(scope.paused).toBe(true);
+
+    //scope.play_pause();
+    //expect(scope.player.paused).toBe(false);
+    //expect(scope.paused).toBe(false);
   });
 });
