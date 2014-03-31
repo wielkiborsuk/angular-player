@@ -52,7 +52,7 @@ describe('Controller: MainCtrl', function () {
     player = {
       load: function () { },
       play: function () { player.paused = false; },
-      pause: function () { player.pause = true; },
+      pause: function () { player.paused = true; },
       stop: function () { },
       paused: true
     };
@@ -212,18 +212,57 @@ describe('Controller: MainCtrl', function () {
     expect(scope.player.paused).toBe(true);
     expect(scope.paused).toBe(true);
 
-    //var lst = scope.mediadirs[0];
-    //scope.activate(lst);
     scope.play_pause();
     expect(scope.player.paused).toBe(false);
     expect(scope.paused).toBe(false);
 
-    //scope.stop();
-    //expect(scope.player.paused).toBe(true);
-    //expect(scope.paused).toBe(true);
+    scope.play_pause();
+    expect(scope.player.paused).toBe(true);
+    expect(scope.paused).toBe(true);
 
-    //scope.play_pause();
-    //expect(scope.player.paused).toBe(false);
-    //expect(scope.paused).toBe(false);
+    scope.play_pause();
+    expect(scope.player.paused).toBe(false);
+    expect(scope.paused).toBe(false);
+
+    scope.stop();
+    expect(scope.player.paused).toBe(true);
+    expect(scope.paused).toBe(true);
+
+    scope.play_pause();
+    expect(scope.player.paused).toBe(false);
+    expect(scope.paused).toBe(false);
+  });
+
+  it('changes currentTime on player object with actions ff nad rev', function () {
+    scope.player.currentTime = 0;
+    scope.player.duration = 25;
+
+    scope.ff();
+    scope.ff();
+    scope.rev();
+    expect(scope.player.currentTime).toBe(10);
+
+    scope.ff();
+    scope.ff();
+    expect(scope.player.currentTime).toBe(25);
+
+    scope.rev();
+    scope.rev();
+    expect(scope.player.currentTime).toBe(5);
+    scope.rev();
+    expect(scope.player.currentTime).toBe(0);
+  });
+
+  it('toggles the mute option both in player and scope on "mute" action', function () {
+    expect(scope.muted).toBe(false);
+    expect(scope.player.muted).toBeFalsy();
+
+    scope.mute_toggle();
+    expect(scope.muted).toBe(true);
+    expect(scope.player.muted).toBe(true);
+
+    scope.mute_toggle();
+    expect(scope.muted).toBe(false);
+    expect(scope.player.muted).toBe(false);
   });
 });

@@ -121,7 +121,7 @@ angular.module('clientApp')
     $scope.stop = function () {
       $scope.player.pause();
       $scope.paused = true;
-      //$scope.player.currentTime = 0;
+      $scope.player.currentTime = 0;
     }
 
     $scope.ff = function () {
