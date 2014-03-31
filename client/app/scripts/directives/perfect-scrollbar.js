@@ -15,7 +15,7 @@ angular.module('clientApp')
         });
 
         if ($attr.refreshOnChange) {
-          $scope.$watch($attr.refreshOnChange, function(newVal, oldVal) {
+          $scope.$watch($attr.refreshOnChange, function(/*newVal, oldVal*/) {
             // I'm not crazy about setting timeouts but it sounds like thie is unavoidable per
             // http://stackoverflow.com/questions/11125078/is-there-a-post-render-callback-for-angular-js-directive
             $timeout(function() { $elem.perfectScrollbar('update'); }, 10);

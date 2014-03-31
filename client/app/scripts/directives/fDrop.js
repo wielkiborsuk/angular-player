@@ -5,23 +5,23 @@ angular.module('clientApp')
     function dragEnter(evt, element, dropStyle) {
       evt.preventDefault();
       element.addClass(dropStyle);
-    };
+    }
     function dragLeave(evt, element, dropStyle) {
       element.removeClass(dropStyle);
-    };
+    }
     function dragOver(evt) {
       evt.preventDefault();
-    };
+    }
     function drop(evt, element, dropStyle) {
       evt.preventDefault();
       element.removeClass(dropStyle);
-    };
+    }
 
     return {
       restrict: 'A',
       link: function(scope, element, attrs)  {
-        scope.dropData = scope[attrs["drop"]];
-        scope.dropStyle = attrs["dropstyle"];
+        scope.dropData = scope[attrs.drop];
+        scope.dropStyle = attrs.dropstyle;
         element.bind('dragenter', function(evt) {
           dragEnter(evt, element, scope.dropStyle);
         });

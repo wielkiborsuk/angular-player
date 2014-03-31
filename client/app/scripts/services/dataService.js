@@ -10,5 +10,5 @@ angular.module('clientApp')
       endpoint_url: '/player/',
       upload_base_url: '/www/upload/',
       brak: ''
-    }
+    };
   });

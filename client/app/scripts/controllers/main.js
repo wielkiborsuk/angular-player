@@ -20,10 +20,14 @@ angular.module('clientApp')
     $scope.listview = 'files';
 //  $scope.listview = 'lists';
 
-    listsService.smscan().then(function (res) {
-        listsService.scanned().then(function (res) {
-            $scope.mediadirs = res.data;
-        })
+    //listsService.smscan().then(function (res) {
+      //listsService.scanned().then(function (res) {
+        //$scope.mediadirs = res.data;
+      //})
+    //})
+
+    listsService.scanned().then(function (res) {
+      $scope.mediadirs = res.data;
     })
 
     listsService.list_list().then(function (res) {
@@ -34,7 +38,7 @@ angular.module('clientApp')
         $scope.active = li;
         $scope.active_type = $scope.listview;
         $scope.song_queue.splice(0, $scope.song_queue.length);
-        $scope.select(li.files[0]);
+        //$scope.select(li.files[0]);
     }
 
     $scope.select = function (f) {

@@ -70,9 +70,8 @@ describe('Controller: MainCtrl', function () {
   }));
 
   it('should initialize mediadirs and lists arrays on construction', function () {
-    httpBackend.expectGET(url+'smscan/');
-    httpBackend.expectGET(url+'list/');
     httpBackend.expectGET(url+'scanned/');
+    httpBackend.expectGET(url+'list/');
     cont('MainCtrl', { $scope: scope });
     httpBackend.flush();
 
@@ -80,15 +79,15 @@ describe('Controller: MainCtrl', function () {
     expect(scope.lists).toBeTruthy();
   });
 
-  it('can activate a certain playlist and autoselect the first song', function () {
+  it('can activate a certain playlist and doesnt autoselect the first song', function () {
     scope.activate(scope.mediadirs[0]);
-    expect(scope.player.src).toBeTruthy();
-    expect(scope.player.src).toEqual(scope.mediabase+scope.mediadirs[0].files[0].path);
-    expect(scope.player.load).toHaveBeenCalled();
+    expect(scope.player.src).toBeFalsy();
+    expect(scope.player.load).not.toHaveBeenCalled();
   });
 
   it('can select other songs with the "select" action', function () {
     scope.activate(scope.mediadirs[0]);
+    scope.select(scope.mediadirs[0].files[0]);
     expect(player.src).toBeTruthy();
     expect(player.load.calls.length).toBe(1);
 
@@ -164,6 +163,7 @@ describe('Controller: MainCtrl', function () {
   it('selects next song in active list after "scope.next" call', function () {
     var lst = scope.mediadirs[0];
     scope.activate(lst);
+    scope.select(lst.files[0]);
     expect(scope.curr).toEqual(lst.files[0]);
 
     scope.next();
@@ -185,6 +185,7 @@ describe('Controller: MainCtrl', function () {
   it('selects previous song on "scope.prev" call', function () {
     var lst = scope.mediadirs[0];
     scope.activate(lst);
+    scope.select(lst.files[0]);
     expect(scope.curr).toEqual(lst.files[0]);
 
     scope.select(lst.files[1]);
@@ -200,6 +201,7 @@ describe('Controller: MainCtrl', function () {
   it('selects last song when "prev" is called on first one', function () {
     var lst = scope.mediadirs[0];
     scope.activate(lst);
+    scope.select(lst.files[0]);
 
     expect(scope.curr).toEqual(lst.files[0]);
     scope.repeat = true;
