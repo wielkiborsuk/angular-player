@@ -18,7 +18,7 @@ describe('Directive: fDrag', function () {
     dragstartEvent = jQuery.Event('dragstart');
     dragstartEvent.originalEvent = {dataTransfer: {
       effectAllowed: 'drag',
-      setData: function(key,val) { }
+      setData: function(/*key,val*/) { }
     }};
 
     dragendEvent = jQuery.Event('dragend');

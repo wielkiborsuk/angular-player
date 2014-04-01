@@ -16,7 +16,7 @@ describe('Directive: fDrop', function () {
 
   beforeEach(inject(function ($rootScope, $compile) {
     scope = $rootScope.$new();
-    scope.list_push = function () {}
+    scope.list_push = function () {};
     comp = $compile;
     file = {name:'hehe.mp3', path:'/path/to/hehe.mp3'};
 
@@ -25,7 +25,7 @@ describe('Directive: fDrop', function () {
     dragoverEvent = jQuery.Event('dragover');
     dropEvent = jQuery.Event('drop');
     dropEvent.originalEvent = {dataTransfer: {
-      getData: function (name) {
+      getData: function (/*name*/) {
         return JSON.stringify(file);
       }
     }};

@@ -10,12 +10,12 @@ describe('Service: dataservice', function () {
   }));
 
   it('should be successfuly created', function () {
-     expect(dataService).toBeTruthy();
+    expect(dataService).toBeTruthy();
   });
 
   it('should defined the key configuration values for the application', function () {
-     expect(dataService.endpoint_url).toBeTruthy();
-     expect(dataService.upload_base_url).toBeTruthy();
+    expect(dataService.endpoint_url).toBeTruthy();
+    expect(dataService.upload_base_url).toBeTruthy();
   });
 
 });

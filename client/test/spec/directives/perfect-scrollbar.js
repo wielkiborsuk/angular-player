@@ -11,10 +11,10 @@ describe('Directive: perfectScrollbar', function () {
 
   beforeEach(inject(function ($rootScope, $compile) {
     scope = $rootScope.$new();
-    compile = $compile
+    compile = $compile;
   }));
 
-  it('should modify the element, adding scrollbar specific class and children', function ($compile) {
+  it('should modify the element, adding scrollbar specific class and children', function () {
     element = angular.element('<div perfect-scrollbar></div>');
     element = compile(element)(scope);
     expect(element.hasClass('ps-container')).toBeTruthy();
