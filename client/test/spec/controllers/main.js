@@ -267,4 +267,14 @@ describe('Controller: MainCtrl', function () {
     expect(scope.muted).toBe(false);
     expect(scope.player.muted).toBe(false);
   });
+
+  it('triggers rescan of media on "rescan" action', function () {
+    httpBackend.expectGET(url+'smscan/');
+    httpBackend.expectGET(url+'scanned/');
+    scope.rescan();
+
+    httpBackend.flush();
+
+    expect(scope.mediadirs).toBeTruthy();
+  });
 });

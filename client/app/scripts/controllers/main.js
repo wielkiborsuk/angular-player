@@ -53,6 +53,14 @@ angular.module('clientApp')
       }
     };
 
+    $scope.rescan = function () {
+      listsService.smscan().then(function (/*res*/) {
+        listsService.scanned().then(function (res) {
+          $scope.mediadirs = res.data;
+        });
+      });
+    };
+
     $scope.queue_toggle = function (f, $event) {
       if ($scope.queue_pos(f)>-1) {
         $scope.dequeue(f, $event);
