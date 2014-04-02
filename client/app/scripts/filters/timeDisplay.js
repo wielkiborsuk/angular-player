@@ -8,7 +8,7 @@ angular.module('clientApp')
     }
 
     return function (input) {
-      var s = Math.abs(input);
+      var s = Math.round(Math.abs(input));
       var m = Math.floor(s / 60 % 60);
       var h = Math.floor(s / 3600);
       s = s % 60;

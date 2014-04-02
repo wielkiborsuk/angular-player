@@ -27,4 +27,8 @@ describe('Filter: timeDisplay', function () {
     expect(timeDisplay(t3-t1)).toEqual('49:02:04');
   });
 
+  it('should round the seconds value for a shot display format', function () {
+    expect(timeDisplay((t2-t1)/3)).toEqual('01:01');
+    expect(timeDisplay((t2-t1)/5)).toEqual('00:36');
+  });
 });
