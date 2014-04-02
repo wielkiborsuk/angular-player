@@ -47,6 +47,12 @@ input::-webkit-slider-thumb {
   min-height: 0px;
 }
 
+.center-icon {
+  vertical-align: middle;
+  margin-top: 0px;
+  margin-right: 0px;
+}
+
 .flex-parent, .flex-parent-vertical {
   display: -webkit-box;
   display: -moz-box;
@@ -123,8 +129,6 @@ input::-webkit-slider-thumb {
 
 .clickable {
   cursor: pointer;
-  margin-left: 20px;
-  margin-right: 20px;
 }
 /*
 ::-webkit-scrollbar {
