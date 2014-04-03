@@ -40,7 +40,7 @@
                 <div class="flex-parent">
                   <span class="ellipsize spacer">{{li.name}}</span>
                   <div ng-show="edit">
-                    <i class="icon-trash clickable" ng-click="list_delete(li, $event)"></i>
+                    <i class="icon-trash clickable center-icon" ng-click="list_delete(li, $event)"></i>
                   </div>
                 </div>
               </a>
@@ -56,7 +56,9 @@
             <a ng-click="select(f)" f-drag drag="f">
               <div class="flex-parent">
                 <span class="ellipsize spacer">{{f.name}}</span>
-                <i class="icon-trash clickable" ng-click="list_pop(active, f, $event)" ng-show="active_type=='lists' && edit"></i>
+                <div ng-show="active_type=='lists' && edit">
+                    <i class="icon-trash clickable center-icon" ng-click="list_pop(active, f, $event)"></i>
+                </div>
                 <span class="badge queue-badge" ng-class="{'opaque': queue_pos(f)>-1, 'badge-info': queue_pos(f)>-1, 'non-opaque': queue_pos(f)<0}" ng-click="queue_toggle(f, $event)">
                   {{queue_pos(f)+1 || '&nbsp;'}}
                 </span>

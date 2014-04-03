@@ -3,7 +3,7 @@
 angular.module('clientApp')
   .directive('timeChanged', function ($rootScope) {
     return {
-      link: function postLink(scope, element, attrs) {
+      link: function postLink(scope, element/*, attrs*/) {
         $rootScope.timer = element[0];
 
         element.bind('mouseup', function () {

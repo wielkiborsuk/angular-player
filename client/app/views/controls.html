@@ -31,6 +31,9 @@
   <button type="button" class="btn btn-small" ng-class="{'btn-inverse': edit}" ng-click="edit_toggle()">
     <i class="icon-wrench" ng-class="{'icon-white': edit}"></i>
   </button>
+  <button type="button" class="btn btn-small" ng-show="edit" ng-click="rescan()">
+    <i class="icon-refresh"></i>
+  </button>
   <span class="btn btn-small disabled spacer"></span>
   <button type="button" class="btn btn-small" ng-class="{'btn-inverse': muted || player.volume==0}" ng-click="mute_toggle()">
     <i ng-class="{'icon-volume-up': !muted && player.volume>0, 'icon-volume-off icon-white': muted || player.volume==0}"></i>

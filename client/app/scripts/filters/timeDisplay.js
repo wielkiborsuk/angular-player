@@ -8,13 +8,15 @@ angular.module('clientApp')
     }
 
     return function (input) {
-      var s = Math.round(input);
-      var m = Math.floor(s / 60);
+      var s = Math.round(Math.abs(input));
+      var m = Math.floor(s / 60 % 60);
+      var h = Math.floor(s / 3600);
       s = s % 60;
 
-      s = (Number.isNaN(s) ? 0 : s);
-      m = (Number.isNaN(m) ? 0 : m);
+      s = (isNaN(s) ? 0 : s);
+      m = (isNaN(m) ? 0 : m);
+      h = (isNaN(h) ? 0 : h);
 
-      return padding('00', m) + ':' + padding('00', s);
+      return (h ? padding('00', h)+':' : '') +  padding('00', m) + ':' + padding('00', s);
     };
   });
