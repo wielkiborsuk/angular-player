@@ -1,2 +1,5 @@
 node_modules
-playlist.db
+dist
+.tmp
+.sass-cache
+app/bower_components
