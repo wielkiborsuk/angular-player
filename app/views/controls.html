@@ -1,47 +1,52 @@
-<div class="span12">
-  <div class="btn btn-small disabled input-block-level">
-    <input type="range" id="audio" value="0" max="{{gradiation}}" time-changed></input>
+<audio player autoplay preload="metadata">
+  <source src="{{mediabase+curr}}" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<div class="col-md-12">
+  <div class="btn btn-default btn-xs btn-block disabled">
+    <input type="range" id="audio" value="0" max="{{gradiation}}" time-bar></input>
   </div>
 </div>
-<div class="btn-group span12 flex-parent">
-  <button type="button" class="btn btn-small" ng-click="prev()">
-    <i class="icon-step-backward"></i>
+<div class="btn-group col-md-12 flex-parent">
+  <button type="button" class="btn btn-default btn-xs" ng-click="prev()">
+    <i class="glyphicon glyphicon-step-backward"></i>
   </button>
-  <button type="button" class="btn btn-small" ng-click="rev()">
-    <i class="icon-backward"></i>
+  <button type="button" class="btn btn-default btn-xs" ng-click="rev()">
+    <i class="glyphicon glyphicon-backward"></i>
   </button>
-  <button type="button" class="btn btn-small" ng-click="stop()">
-    <i class="icon-stop"></i>
+  <button type="button" class="btn btn-default btn-xs" ng-click="stop()">
+    <i class="glyphicon glyphicon-stop"></i>
   </button>
-  <button type="button" class="btn btn-small" ng-click="play_pause()">
-    <i ng-class="{'icon-play': player.paused, 'icon-pause': !player.paused}"></i>
+  <button type="button" class="btn btn-default btn-xs" ng-click="play_pause()">
+    <i class="glyphicon" ng-class="{'glyphicon-play': player.paused, 'glyphicon-pause': !player.paused}"></i>
   </button>
-  <button type="button" class="btn btn-small" ng-click="ff()">
-    <i class="icon-forward"></i>
+  <button type="button" class="btn btn-default btn-xs" ng-click="ff()">
+    <i class="glyphicon glyphicon-forward"></i>
   </button>
-  <button type="button" class="btn btn-small" ng-click="next()">
-    <i class="icon-step-forward"></i>
+  <button type="button" class="btn btn-default btn-xs" ng-click="next()">
+    <i class="glyphicon glyphicon-step-forward"></i>
   </button>
-  <button type="button" class="btn btn-small" ng-class="{'btn-inverse': random}" ng-click="random_toggle()">
-    <i class="icon-random" ng-class="{'icon-white': random}"></i>
+  <button type="button" class="btn btn-default btn-xs" ng-class="{'active': random}" ng-click="random_toggle()">
+    <i class="glyphicon glyphicon-random" ng-class="{'glyphicon-white': random}"></i>
   </button>
-  <button type="button" class="btn btn-small" ng-class="{'btn-inverse': repeat}" ng-click="repeat_toggle()">
-    <i class="icon-repeat" ng-class="{'icon-white': repeat}"></i>
+  <button type="button" class="btn btn-default btn-xs" ng-class="{'active': repeat}" ng-click="repeat_toggle()">
+    <i class="glyphicon glyphicon-repeat" ng-class="{'glyphicon-white': repeat}"></i>
   </button>
-  <button type="button" class="btn btn-small" ng-class="{'btn-inverse': edit}" ng-click="edit_toggle()">
-    <i class="icon-wrench" ng-class="{'icon-white': edit}"></i>
+  <button type="button" class="btn btn-default btn-xs" ng-class="{'active': edit}" ng-click="edit_toggle()">
+    <i class="glyphicon glyphicon-wrench" ng-class="{'glyphicon-white': edit}"></i>
   </button>
-  <button type="button" class="btn btn-small" ng-show="edit" ng-click="rescan()">
-    <i class="icon-refresh"></i>
+  <button type="button" class="btn btn-default btn-xs" ng-show="edit" ng-click="rescan()">
+    <i class="glyphicon glyphicon-refresh"></i>
   </button>
-  <span class="btn btn-small disabled spacer"></span>
-  <button type="button" class="btn btn-small" ng-class="{'btn-inverse': muted || player.volume==0}" ng-click="mute_toggle()">
-    <i ng-class="{'icon-volume-up': !muted && player.volume>0, 'icon-volume-off icon-white': muted || player.volume==0}"></i>
+  <span class="btn btn-default btn-xs disabled spacer"></span>
+  <button type="button" class="btn btn-default btn-xs" ng-class="{'active': muted || player.volume==0}" ng-click="mute_toggle()">
+    <i class="glyphicon" ng-class="{'glyphicon-volume-up': !muted && player.volume>0, 'glyphicon-volume-off glyphicon-white': muted || player.volume==0}"></i>
   </button>
-  <span class="btn btn-small disabled">
+  <span class="btn btn-default btn-xs disabled">
     <input type="range" id="volume" value="{{init_volume * 100}}" volume-changed></input>
   </span>
-  <button type="button" class="btn btn-small disabled">
+  <button type="button" class="btn btn-default btn-xs disabled">
     {{time | timeDisplay}} / {{duration | timeDisplay}}
   </button>
 </div>

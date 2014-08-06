@@ -1,9 +1,9 @@
 'use strict';
 
-describe('Directive: volumeChanged', function () {
+describe('Directive: timeBar', function () {
 
   // load the directive's module
-  beforeEach(module('clientApp'));
+  beforeEach(module('angularPlayerApp'));
 
   var element,
     scope;
@@ -13,8 +13,8 @@ describe('Directive: volumeChanged', function () {
   }));
 
   it('should make hidden element visible', inject(function ($compile) {
-    element = angular.element('<volume-changed></volume-changed>');
+    element = angular.element('<time-bar></time-bar>');
     element = $compile(element)(scope);
-    // expect(element.text()).toBe('this is the volumeChanged directive');
+    expect(element.text()).toBe('this is the timeBar directive');
   }));
 });
