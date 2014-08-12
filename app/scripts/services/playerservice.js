@@ -8,7 +8,7 @@
  * Service in the angularPlayerApp.
  */
 angular.module('angularPlayerApp')
-  .service('Playerservice', function Playerservice() {
+  .service('Playerservice', function Playerservice(Dataservice) {
     return {
       gradation: 1000,
       controls: {
@@ -17,14 +17,16 @@ angular.module('angularPlayerApp')
         player: null
       },
       setVolume: function (vol) {
-        this.controls.volumeBar.val(vol);
+        if (this.controls.volumeBar) {
+          this.controls.volumeBar.val(vol);
+        }
         this.controls.player.volume = 1.0*vol/100;
       },
       play: function () {
-        this.controls.player.play();
+        this.controls.player[0].play();
       },
       pause: function () {
-        this.controls.player.pause();
+        this.controls.player[0].pause();
       },
       seek: function (val) {
         var time = val / this.gradation * this.controls.player.duration;
@@ -40,7 +42,8 @@ angular.module('angularPlayerApp')
 
         var loaded = Math.min(buff/dur||0, 1);
         var played = Math.min(time/dur||0, loaded, 1);
-        this.controls.timeBar.style.background = this.getGradient(played, loaded);
+        //FIXME
+        //this.controls.timeBar.style.background = this.getGradient(played, loaded);
       },
       getGradient: function (played, loaded) {
         var res = '-webkit-gradient(linear, left top, right bottom, ';
@@ -55,6 +58,12 @@ angular.module('angularPlayerApp')
       },
       getDuration: function () {
         return this.controls.player[0].duration;
+      },
+      select: function (f) {
+        console.log(f);
+        console.log(f.path);
+        this.controls.player[0].src = Dataservice.mediabase + f.path;
+        this.controls.player[0].load();
       }
     };
   });

@@ -36,6 +36,6 @@ angular.module('angularPlayerApp')
       list_delete: function (listid) {
         return $http.delete(url+'list/'+listid);
       },
-      base: Dataservice.upload_base_url
+      base: Dataservice.mediabase
     };
   });

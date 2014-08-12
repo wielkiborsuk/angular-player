@@ -15,17 +15,15 @@ angular
     'ngResource',
     'ngRoute'
   ])
-  .config(function ($routeProvider) {
+  .config(function ($routeProvider, $sceProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
-      })
       .otherwise({
         redirectTo: '/'
       });
+
+    $sceProvider.enabled(false);
   });

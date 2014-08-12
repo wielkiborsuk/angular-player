@@ -9,9 +9,10 @@
 angular.module('angularPlayerApp')
   .directive('player', function (Playerservice) {
     return {
-      link: function postLink(scope, element/*, attrs*/) {
+      link: function postLink(scope, element, attrs) {
+        var init_volume = attrs.initVolume || 0.1;
         Playerservice.controls.player = element;
-        Playerservice.setVolume(scope.init_volume);
+        Playerservice.setVolume(init_volume * 100);
 
         element.bind('ended', function () {
           scope.$apply(function () {
