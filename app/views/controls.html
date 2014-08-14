@@ -1,14 +1,17 @@
-<audio player autoplay preload="metadata" init-volume="0.1">
-  <source src="{{getMediabase()+state.curr}}" type="audio/mpeg">
+ <!--autoplay preload="metadata"-->
+<audio player controls init-volume="0.1">
+  <source src="http://http://alarmpi/www/upload/a.morze.tak.a.moze.nie/03.%20Do%20Calais.mp3" type="audio/mpeg">
+  <!--<source src="{{getMediabase()+state.curr.path}}" type="audio/mpeg">-->
   Your browser does not support the audio element.
 </audio>
+{{getCurrentPath()}}
 
 <div class="col-md-12">
   <div class="btn btn-default btn-xs btn-block">
     <input type="range" id="audio" value="0" max="{{getGradation()}}" time-bar></input>
   </div>
 </div>
-<div class="btn-group btn-group-xs col-md-12 flex-parent">
+<div class="btn-group btn-group-xs col-md-12 flex-h">
   <button type="button" class="btn btn-default" ng-click="prev()">
     <i class="glyphicon glyphicon-step-backward"></i>
   </button>
@@ -19,7 +22,7 @@
     <i class="glyphicon glyphicon-stop"></i>
   </button>
   <button type="button" class="btn btn-default" ng-click="play_pause()">
-    <i class="glyphicon" ng-class="{'glyphicon-play': flags.paused, 'glyphicon-pause': !flags.paused}"></i>
+    <i class="glyphicon" ng-class="{'glyphicon-play': getPaused(), 'glyphicon-pause': !getPaused()}"></i>
   </button>
   <button type="button" class="btn btn-default" ng-click="ff()">
     <i class="glyphicon glyphicon-forward"></i>
@@ -39,9 +42,9 @@
   <button type="button" class="btn btn-default" ng-show="flags.edit" ng-click="rescan()">
     <i class="glyphicon glyphicon-refresh"></i>
   </button>
-  <span class="btn btn-default disabled spacer"></span>
+  <span class="btn btn-default disabled spacer">&nbsp;</span>
   <button type="button" class="btn btn-default" ng-class="{'active': flags.muted || player.volume==0}" ng-click="mute_toggle()">
-    <i class="glyphicon" ng-class="{'glyphicon-volume-up': !flags.muted && player.volume>0, 'glyphicon-volume-off glyphicon-white': flags.muted || player.volume==0}"></i>
+    <i class="glyphicon" ng-class="{'glyphicon-volume-up': !flags.muted && getVolume()>0, 'glyphicon-volume-off': flags.muted || getVolume()==0}"></i>
   </button>
   <span class="btn btn-default">
     <input type="range" id="volume" volume-bar></input>

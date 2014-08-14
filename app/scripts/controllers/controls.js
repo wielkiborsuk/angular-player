@@ -8,12 +8,12 @@
  * Controller of the angularPlayerApp
  */
 angular.module('angularPlayerApp')
-  .controller('ControlsCtrl', function ($scope, Playerservice) {
+  .controller('ControlsCtrl', function ($scope, Playerservice, Listsservice) {
     $scope.gradation = Playerservice.gradation;
 
     $scope.rescan = function () {
-      listsService.smscan().then(function (/*res*/) {
-        listsService.scanned().then(function (res) {
+      Listsservice.smscan().then(function (/*res*/) {
+        Listsservice.scanned().then(function (res) {
           $scope.state.mediadirs = res.data;
         });
       });
@@ -53,32 +53,32 @@ angular.module('angularPlayerApp')
     };
 
     $scope.play_pause = function () {
-      if ($scope.player.paused) {
-        $scope.player.play();
+      if (Playerservice.paused()) {
+        Playerservice.play();
         $scope.flags.paused = false;
       } else {
-        $scope.player.pause();
+        Playerservice.pause();
         $scope.flags.paused = true;
       }
     };
 
     $scope.stop = function () {
-      $scope.player.pause();
+      Playerservice.pause();
       $scope.flags.paused = true;
-      $scope.player.currentTime = 0;
+      Playerservice.timeReset();
     };
 
     $scope.ff = function () {
-      $scope.player.currentTime = Math.min($scope.player.currentTime + 10, $scope.player.duration);
+      Playerservice.ff();
     };
 
     $scope.rev = function () {
-      $scope.player.currentTime = Math.max(0, $scope.player.currentTime - 10);
+      Playerservice.rev();
     };
 
     $scope.mute_toggle = function () {
-      $scope.player.muted = !$scope.player.muted;
-      $scope.flags.muted = $scope.player.muted;
+      Playerservice.mute_toggle();
+      $scope.flags.muted = Playerservice.muted();
     };
 
     $scope.random_toggle = function () {

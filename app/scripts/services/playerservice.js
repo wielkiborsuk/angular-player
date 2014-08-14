@@ -28,9 +28,24 @@ angular.module('angularPlayerApp')
       pause: function () {
         this.controls.player[0].pause();
       },
+      paused: function () {
+        return this.controls.player[0].paused;
+      },
+      mute_toggle: function () {
+        this.controls.player[0].muted = this.getMuted();
+      },
+      muted: function () {
+        return this.controls.player[0].muted;
+      },
       seek: function (val) {
-        var time = val / this.gradation * this.controls.player.duration;
-        this.controls.player.currentTime = time;
+        var time = val / this.gradation * this.getDuration();
+        this.controls.player[0].currentTime = Math.max(Math.min(time, this.getDuration()), 0);
+      },
+      ff: function () {
+        this.seek(this.gradation * (this.getTime() + 10) / this.getDuration());
+      },
+      rev: function () {
+        this.seek(this.gradation * (this.getTime() - 10) / this.getDuration());
       },
       seekUpdate: function () {
         var player = this.controls.player[0];
@@ -42,8 +57,7 @@ angular.module('angularPlayerApp')
 
         var loaded = Math.min(buff/dur||0, 1);
         var played = Math.min(time/dur||0, loaded, 1);
-        //FIXME
-        //this.controls.timeBar.style.background = this.getGradient(played, loaded);
+        this.controls.timeBar[0].style.background = this.getGradient(played, loaded);
       },
       getGradient: function (played, loaded) {
         var res = '-webkit-gradient(linear, left top, right bottom, ';
@@ -59,11 +73,20 @@ angular.module('angularPlayerApp')
       getDuration: function () {
         return this.controls.player[0].duration;
       },
+      getVolume: function () {
+        return this.controls.player[0].volume;
+      },
+      getCurrentPath: function () {
+        return this.controls.player[0].src;
+      },
+      timeReset: function () {
+        this.controls.player[0].currentTime = 0;
+      },
       select: function (f) {
-        console.log(f);
-        console.log(f.path);
         this.controls.player[0].src = Dataservice.mediabase + f.path;
-        this.controls.player[0].load();
+        this.controls.player.children()[0].src = Dataservice.mediabase + f.path;
+        //this.controls.player[0].load();
+        this.controls.player[0].play();
       }
     };
   });

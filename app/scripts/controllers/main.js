@@ -70,4 +70,27 @@ angular.module('angularPlayerApp')
     $scope.getGradation = function() {
       return Playerservice.gradation;
     };
+
+    $scope.getVolume = function () {
+      return Playerservice.getVolume();
+    };
+
+    $scope.getPaused = function () {
+      return Playerservice.paused();
+    };
+
+    $scope.getCurrentPath = function () {
+      return Playerservice.getCurrentPath();
+    };
+
+    $scope.select = function (f) {
+      $scope.state.curr = f;
+      Playerservice.select(f);
+      if ($scope.queue_pos(f)>-1) {
+        $scope.state.song_queue.splice($scope.queue_pos(f), 1);
+        if ($scope.flags.repeat) {
+          $scope.state.song_queue.push(f);
+        }
+      }
+    };
   });

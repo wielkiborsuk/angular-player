@@ -1,9 +1,10 @@
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/bootstrap.scss";
-@import "compass";
 // endbower
-@import "./sidebar.scss";
+@import "compass";
+@import "sidebar.scss";
+@import "flexbox.scss";
 
 .ellipsize {
   overflow: hidden;
@@ -38,6 +39,23 @@ input::-webkit-slider-thumb {
   border-radius:10px;
   @include background-image(linear-gradient(#010101, #333333 49%, #3e3e3e 51%, #6e6e6e));
 }
+
+.flex-h, .flex-v {
+  @include flexcontainer($alignitems: flex-start);
+}
+
+.flex-h {
+  @include flexprop(flex-direction, row);
+}
+
+.flex-v {
+  @include flexprop(flex-direction, column);
+}
+
+.spacer {
+  @include flexchild($flexgrow: 1, $flexshrink: 1, $flexbasis: 0);
+}
+
 
 .browsehappy {
   margin: 0.2em 0;
