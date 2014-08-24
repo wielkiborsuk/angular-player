@@ -41,7 +41,7 @@ input::-webkit-slider-thumb {
 }
 
 .flex-h, .flex-v {
-  @include flexcontainer($alignitems: flex-start);
+  @include flexcontainer($alignitems: strech);
 }
 
 .flex-h {
@@ -56,6 +56,21 @@ input::-webkit-slider-thumb {
   @include flexchild($flexgrow: 1, $flexshrink: 1, $flexbasis: 0);
 }
 
+.filler {
+  height: 100%;
+}
+
+.scrolled {
+  overflow: hidden;
+  position: relative;
+}
+
+.scroll-parent {
+  margin-bottom: 0px;
+  padding-right: 0px;
+  padding-left: 0px;
+  position: relative;
+}
 
 .browsehappy {
   margin: 0.2em 0;
@@ -68,6 +83,11 @@ input::-webkit-slider-thumb {
 body {
   padding-top: 20px;
   padding-bottom: 20px;
+  height: 100%;
+}
+
+html {
+  height: 100%;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */

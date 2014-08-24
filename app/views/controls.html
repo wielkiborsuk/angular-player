@@ -1,10 +1,7 @@
- <!--autoplay preload="metadata"-->
-<audio player controls init-volume="0.1">
-  <source src="http://http://alarmpi/www/upload/a.morze.tak.a.moze.nie/03.%20Do%20Calais.mp3" type="audio/mpeg">
-  <!--<source src="{{getMediabase()+state.curr.path}}" type="audio/mpeg">-->
+<audio player preload="metadata" init-volume="0.1">
+  <source src="{{getMediabase()+state.curr.path}}" type="audio/mpeg" />
   Your browser does not support the audio element.
 </audio>
-{{getCurrentPath()}}
 
 <div class="col-md-12">
   <div class="btn btn-default btn-xs btn-block">

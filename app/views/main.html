@@ -1,10 +1,11 @@
-<div class="row header">
-  <h3>{{active.name}}&nbsp;</h3>
-</div>
-<div ng-include="'views/controls.html'" ng-controller="ControlsCtrl" class="row"></div>
+<div class="flex-v filler">
+  <div class="row header">
+    <h3>{{active.name}}&nbsp;</h3>
+  </div>
+  <div ng-include="'views/controls.html'" ng-controller="ControlsCtrl" class="row"></div>
 
-<div class="row">
-  <div ng-include="'views/list.html'" ng-controller="ListCtrl" class="col-md-2"></div>
-  <div ng-include="'views/playlist.html'" ng-controller="ListCtrl" class="col-md-10"></div>
+  <div class="row spacer flex-h">
+    <div ng-include="'views/list.html'" ng-controller="ListCtrl" class="col-md-2 flex-v"></div>
+    <div ng-include="'views/playlist.html'" ng-controller="ListCtrl" class="col-md-10 flex-v"></div>
+  </div>
 </div>
-

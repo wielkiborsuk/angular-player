@@ -85,7 +85,6 @@ angular.module('angularPlayerApp')
       select: function (f) {
         this.controls.player[0].src = Dataservice.mediabase + f.path;
         this.controls.player.children()[0].src = Dataservice.mediabase + f.path;
-        //this.controls.player[0].load();
         this.controls.player[0].play();
       }
     };

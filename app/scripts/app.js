@@ -13,7 +13,8 @@ angular
     'ngAnimate',
     'ngCookies',
     'ngResource',
-    'ngRoute'
+    'ngRoute',
+    'perfect_scrollbar'
   ])
   .config(function ($routeProvider, $sceProvider) {
     $routeProvider

@@ -1,39 +1,35 @@
+      <perfect-scrollbar class="scrolled spacer flex-v" ng-show="state.listview=='files'" refresh-on-change="state.mediadirs+state.mediadirs.length">
+        <ul class="nav bs-sidenav">
+          <li ng-class="{'active': li==state.active}" ng-repeat="li in state.mediadirs">
+            <a ng-click="activate(li)" title="{{li.name}}" class="ellipsize">
+              {{li.name}}
+            </a>
+          </li>
+        </ul>
+      </perfect-scrollbar>
+      <perfect-scrollbar class="scrolled spacer flex-v" ng-show="state.listview=='lists'" refresh-on-change="state.lists+state.lists.length">
+        <ul class="nav bs-sidenav">
+          <li ng-class="{'active': li==state.active}" ng-repeat="li in state.lists">
+            <a ng-click="activate(li)" title="{{li.name}}" f-drop drop="li">
+              <div class="flex-h">
+                <span class="ellipsize spacer">{{li.name}}</span>
+                <div ng-show="flags.edit">
+                  <i class="icon-trash clickable center-icon" ng-click="list_delete(li, $event)"></i>
+                </div>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </perfect-scrollbar>
+      <div class="input-append" ng-show="state.listview=='lists' && flags.edit">
+        <input type="text" name="newName" id="new_name" ng-model="state.new_list.name" />
+        <button type="button" class="btn btn-small" ng-click="list_add()">Add</button>
+      </div>
       <div class="btn-group btn-group-justified">
         <div class="btn-group">
           <button class="btn btn-default btn-sm spacer" ng-class="{'active':state.listview=='files'}" ng-click="state.listview='files'">files</button>
         </div>
         <div class="btn-group">
           <button class="btn btn-default btn-sm spacer" ng-class="{'active':state.listview=='lists'}" ng-click="state.listview='lists'">lists</button>
-        </div>
-      </div>
-      <div class="spacer scroll-parent" ng-show="state.listview=='files'" >
-        <div class="scrolled spacer" perfect-scrollbar refresh-on-change="state.mediadirs+state.mediadirs.length">
-          <ul class="nav bs-sidenav">
-            <li ng-class="{'active': li==state.active}" ng-repeat="li in state.mediadirs">
-              <a ng-click="activate(li)" title="{{li.name}}" class="ellipsize">
-                {{li.name}}
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="input-append" ng-show="state.listview=='lists' && flags.edit">
-        <input type="text" name="newName" id="new_name" ng-model="state.new_list.name" />
-        <button type="button" class="btn btn-small" ng-click="list_add()">Add</button>
-      </div>
-      <div class="spacer scroll-parent" ng-show="state.listview=='lists'">
-        <div class="scrolled spacer" perfect-scrollbar refresh-on-change="state.lists+state.lists.length">
-          <ul class="nav bs-sidenav">
-            <li ng-class="{'active': li==state.active}" ng-repeat="li in state.lists">
-              <a ng-click="activate(li)" title="{{li.name}}" f-drop drop="li">
-                <div class="flex-h">
-                  <span class="ellipsize spacer">{{li.name}}</span>
-                  <div ng-show="flags.edit">
-                    <i class="icon-trash clickable center-icon" ng-click="list_delete(li, $event)"></i>
-                  </div>
-                </div>
-              </a>
-            </li>
-          </ul>
         </div>
       </div>
