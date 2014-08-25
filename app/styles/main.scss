@@ -88,6 +88,12 @@ input::-webkit-slider-thumb {
   opacity: 1;
 }
 
+.scrolled {
+  > div {
+    @extend .flex-v, .spacer;
+  }
+}
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -97,8 +103,8 @@ input::-webkit-slider-thumb {
 
 /* Space out content a bit */
 body {
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
   height: 100%;
 }
 
@@ -122,12 +128,11 @@ html {
 /* Custom page header */
 .header {
   border-bottom: 1px solid #e5e5e5;
-  margin-bottom: 5px;
 
   /* Make the masthead heading the same height as the navigation */
   h3 {
     margin-top: 0px;
-    margin-bottom: 0px;
+    margin-bottom: 5px;
   }
 }
 
