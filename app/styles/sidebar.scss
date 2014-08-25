@@ -13,15 +13,17 @@
   display: block;
   color: #716b7a;
   padding: 2px 2px;
+  padding-right: 15px;
+  border-left: 2px solid #f7f5fa;
 }
 .bs-sidenav > li > a:hover, .bs-sidenav > li > a:focus {
   text-decoration: none;
   background-color: #e5e3e9;
-  border-right: 1px solid #dbd8e0;
+  border-left: 2px solid #dbd8e0;
 }
 .bs-sidenav > .active > a, .bs-sidenav > .active:hover > a, .bs-sidenav > .active:focus > a {
   font-weight: bold;
   color: #563d7c;
   background-color: transparent;
-  border-right: 1px solid #563d7c;
+  border-left: 2px solid #563d7c;
 }

@@ -4,10 +4,8 @@
     <a ng-click="select(f)" f-drag drag="f">
       <div class="flex-h">
         <span class="ellipsize spacer">{{f.name}}</span>
-        <div ng-show="state.active_type=='lists' && flags.edit">
-          <i class="icon-trash clickable" ng-click="list_pop(state.active, f, $event)"></i>
-        </div>
-        <span class="badge queue-badge" ng-class="{'opaque': queue_pos(f)>-1, 'badge-info': queue_pos(f)>-1, 'non-opaque': queue_pos(f)<0}" ng-click="queue_toggle(f, $event)">
+        <span ng-show="state.active_type=='lists' && flags.edit" class="glyphicon glyphicon-trash icon-align clickable" ng-click="list_pop(state.active, f, $event)"></span>
+        <span class="badge clickable" ng-class="{'opaque': queue_pos(f)>-1, 'badge-info': queue_pos(f)>-1, 'non-opaque': queue_pos(f)<0}" ng-click="queue_toggle(f, $event)">
           {{queue_pos(f)+1 || '&nbsp;'}}
         </span>
       </div>

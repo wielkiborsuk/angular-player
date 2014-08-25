@@ -1,11 +1,11 @@
 <div class="flex-v filler">
   <div class="row header">
-    <h3>{{active.name}}&nbsp;</h3>
+    <h3 class="ellipsize">{{state.active.name}}&nbsp;</h3>
   </div>
   <div ng-include="'views/controls.html'" ng-controller="ControlsCtrl" class="row"></div>
 
   <div class="row spacer flex-h">
-    <div ng-include="'views/list.html'" ng-controller="ListCtrl" class="col-md-2 flex-v"></div>
-    <div ng-include="'views/playlist.html'" ng-controller="ListCtrl" class="col-md-10 flex-v"></div>
+    <div ng-include="'views/list.html'" ng-controller="ListCtrl" class="col-xs-2 flex-v uncollapse"></div>
+    <div ng-include="'views/playlist.html'" ng-controller="ListCtrl" class="col-xs-10 flex-v" style="padding-left: 0px;"></div>
   </div>
 </div>

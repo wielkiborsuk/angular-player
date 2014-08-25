@@ -13,19 +13,19 @@
             <a ng-click="activate(li)" title="{{li.name}}" f-drop drop="li">
               <div class="flex-h">
                 <span class="ellipsize spacer">{{li.name}}</span>
-                <div ng-show="flags.edit">
-                  <i class="icon-trash clickable center-icon" ng-click="list_delete(li, $event)"></i>
-                </div>
+                <span ng-show="flags.edit" class="glyphicon glyphicon-trash clickable icon-align" ng-click="list_delete(li, $event)"></span>
               </div>
             </a>
           </li>
         </ul>
       </perfect-scrollbar>
-      <div class="input-append" ng-show="state.listview=='lists' && flags.edit">
-        <input type="text" name="newName" id="new_name" ng-model="state.new_list.name" />
-        <button type="button" class="btn btn-small" ng-click="list_add()">Add</button>
+      <div class="input-group input-group-sm" ng-show="state.listview=='lists' && flags.edit">
+        <input type="text" name="newName" id="new_name" class="form-control" ng-model="state.new_list.name" />
+        <span class="input-group-btn">
+          <button type="button" class="btn btn-default" ng-click="list_add()">Add</button>
+        </span>
       </div>
-      <div class="btn-group btn-group-justified">
+      <div class="btn-group btn-group-justified" style="margin-top:10px;">
         <div class="btn-group">
           <button class="btn btn-default btn-sm spacer" ng-class="{'active':state.listview=='files'}" ng-click="state.listview='files'">files</button>
         </div>
