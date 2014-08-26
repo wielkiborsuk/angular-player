@@ -17,10 +17,12 @@ angular.module('angularPlayerApp')
         player: null
       },
       setVolume: function (vol) {
-        if (this.controls.volumeBar) {
-          this.controls.volumeBar.val(vol);
+        if (!isNaN(vol)) {
+          if (this.controls.volumeBar) {
+            this.controls.volumeBar.val(vol);
+          }
+          this.controls.player[0].volume = 1.0*vol/100;
         }
-        this.controls.player.volume = 1.0*vol/100;
       },
       play: function () {
         this.controls.player[0].play();
