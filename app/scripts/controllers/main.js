@@ -9,14 +9,6 @@
  */
 angular.module('angularPlayerApp')
   .controller('MainCtrl', function ($scope, $sce, Dataservice, Playerservice) {
-    $scope.active = {};
-    $scope.active_type = '';
-    $scope.curr = '';
-    $scope.song_queue = [];
-    $scope.new_list = {};
-    $scope.mediadirs = {};
-    $scope.lists = {};
-
     $scope.state = {
       listview: 'files',
       //listview: 'lists',
