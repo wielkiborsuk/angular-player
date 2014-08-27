@@ -3,8 +3,11 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 @import "bootstrap-sass-official/assets/stylesheets/bootstrap.scss";
 // endbower
 @import "compass";
+@import "compass/css3";
 @import "sidebar.scss";
 @import "flexbox.scss";
+
+@include font-face("droid_sans", font-files("droidsans-webfont.ttf", "droidsans-webfont.eot", "droidsans-webfont.woff"));
 
 .ellipsize {
   overflow: hidden;
@@ -106,6 +109,7 @@ body {
   padding-top: 15px;
   padding-bottom: 15px;
   height: 100%;
+  font-family: droid_sans;
 }
 
 html {
