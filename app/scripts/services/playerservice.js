@@ -14,7 +14,8 @@ angular.module('angularPlayerApp')
       controls: {
         timeBar: null,
         volumeBar: null,
-        player: null
+        player: null,
+        timeBlocked: false
       },
       setVolume: function (vol) {
         if (!isNaN(vol)) {
@@ -50,16 +51,18 @@ angular.module('angularPlayerApp')
         this.seek(this.gradation * (this.getTime() - 10) / this.getDuration());
       },
       seekUpdate: function () {
-        var player = this.controls.player[0];
-        var dur = player.duration,
-          time = player.currentTime,
-          buff = player.buffered && player.buffered.length>0 ? player.buffered.end(0) : 0;
-        var val = time * this.gradation / player.duration||1;
-        this.controls.timeBar.val(val);
+        if (!this.controls.timeBlocked) {
+          var player = this.controls.player[0];
+          var dur = player.duration,
+            time = player.currentTime,
+            buff = player.buffered && player.buffered.length>0 ? player.buffered.end(0) : 0;
+          var val = time * this.gradation / player.duration||1;
+          this.controls.timeBar.val(val);
 
-        var loaded = Math.min(buff/dur||0, 1);
-        var played = Math.min(time/dur||0, loaded, 1);
-        this.controls.timeBar[0].style.background = this.getGradient(played, loaded);
+          var loaded = Math.min(buff/dur||0, 1);
+          var played = Math.min(time/dur||0, loaded, 1);
+          this.controls.timeBar[0].style.background = this.getGradient(played, loaded);
+        }
       },
       getGradient: function (played, loaded) {
         var res = '-webkit-gradient(linear, left top, right bottom, ';
@@ -88,6 +91,9 @@ angular.module('angularPlayerApp')
         this.controls.player[0].src = Dataservice.mediabase + f.path;
         this.controls.player.children()[0].src = Dataservice.mediabase + f.path;
         this.controls.player[0].play();
+      },
+      timeBlock: function (val) {
+        this.controls.timeBlocked = val;
       }
     };
   });

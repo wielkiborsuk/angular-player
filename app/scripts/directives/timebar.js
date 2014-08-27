@@ -14,9 +14,11 @@ angular.module('angularPlayerApp')
 
         element.bind('mouseup', function () {
           Playerservice.play();
+          Playerservice.timeBlock(false);
         });
 
         element.bind('mousedown', function () {
+          Playerservice.timeBlock(true);
           Playerservice.pause();
         });
 
