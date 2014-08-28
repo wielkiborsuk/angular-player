@@ -21,11 +21,15 @@ angular.module('angularPlayerApp')
         });
 
         element.bind('timeupdate', function () {
-          Playerservice.seekUpdate();
+          scope.$apply(function () {
+            Playerservice.seekUpdate();
+          });
         });
 
         element.bind('progress', function () {
-          Playerservice.seekUpdate();
+          scope.$apply(function () {
+            Playerservice.seekUpdate();
+          });
         });
 
         element.bind('volumechange', function () {

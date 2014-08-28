@@ -15,7 +15,8 @@ angular.module('angularPlayerApp')
         timeBar: null,
         volumeBar: null,
         player: null,
-        timeBlocked: false
+        timeBlocked: false,
+        timeLabel: {time:0, duration:0}
       },
       setVolume: function (vol) {
         if (!isNaN(vol)) {
@@ -62,6 +63,8 @@ angular.module('angularPlayerApp')
           var loaded = Math.min(buff/dur||0, 1);
           var played = Math.min(time/dur||0, loaded, 1);
           this.controls.timeBar[0].style.background = this.getGradient(played, loaded);
+          this.controls.timeLabel.time = time;
+          this.controls.timeLabel.duration = dur;
         }
       },
       getGradient: function (played, loaded) {

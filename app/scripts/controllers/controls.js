@@ -10,6 +10,7 @@
 angular.module('angularPlayerApp')
   .controller('ControlsCtrl', function ($scope, Playerservice, Listsservice) {
     $scope.gradation = Playerservice.gradation;
+    $scope.timeLabel = Playerservice.controls.timeLabel;
 
     $scope.rescan = function () {
       Listsservice.smscan().then(function (/*res*/) {
