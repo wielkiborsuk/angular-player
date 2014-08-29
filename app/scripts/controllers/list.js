@@ -38,12 +38,12 @@ angular.module('angularPlayerApp')
     };
 
     $scope.list_add = function () {
-      if ($scope.new_list.name) {
-        var tmp_list = $scope.new_list;
-        $scope.new_list = {};
+      if ($scope.state.new_list.name) {
+        var tmp_list = $scope.state.new_list;
+        $scope.state.new_list = {};
         tmp_list.files = [];
-        $scope.lists.push(tmp_list);
-        listsService.list_create(tmp_list).success(function (res) {
+        $scope.state.lists.push(tmp_list);
+        Listsservice.list_create(tmp_list).success(function (res) {
           tmp_list._id = res;
         });
       } else {
@@ -55,19 +55,19 @@ angular.module('angularPlayerApp')
       $event.stopPropagation();
       if (li) {
         if (li._id) {
-          listsService.list_delete(li._id).success(function(/*res*/) {
-            arr_del($scope.lists, li);
+          Listsservice.list_delete(li._id).success(function(/*res*/) {
+            arr_del($scope.state.lists, li);
           });
         } else {
-          arr_del($scope.lists, li);
+          arr_del($scope.state.lists, li);
         }
       }
     };
 
     $scope.list_push = function(li, f) {
-      if ($scope.edit && li && li._id && li.files.indexOf(f)<0) {
+      if ($scope.flags.edit && li && li._id && li.files.indexOf(f)<0) {
         li.files.push(f);
-        listsService.list_put(li._id, li);
+        Listsservice.list_put(li._id, li);
       }
     };
 
@@ -75,7 +75,7 @@ angular.module('angularPlayerApp')
       if (li && f) {
         arr_del(li.files, f);
         if (li._id) {
-          listsService.list_put(li._id, li);
+          Listsservice.list_put(li._id, li);
         }
       }
     };
