@@ -97,6 +97,16 @@ input::-webkit-slider-thumb {
   }
 }
 
+.dragged {
+  opacity:  0.6;
+  border-top: solid 1px #563d7c;
+  border-bottom: solid 1px #563d7c;
+}
+
+.drop-over {
+  border-right: solid 2px #563d7c;
+}
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;

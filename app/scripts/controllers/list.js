@@ -65,7 +65,7 @@ angular.module('angularPlayerApp')
     };
 
     $scope.list_push = function(li, f) {
-      if ($scope.flags.edit && li && li._id && li.files.indexOf(f)<0) {
+      if ($scope.flags.edit && li && li._id && !has_file(li,f)) {
         li.files.push(f);
         Listsservice.list_put(li._id, li);
       }
@@ -79,6 +79,17 @@ angular.module('angularPlayerApp')
         }
       }
     };
+
+    function has_file(list, file) {
+      if (list && list._id && file && file.path) {
+        for (var i=0; i<list.files.length; i++) {
+          if (file.path == list.files[i].path) {
+            return true;
+          }
+        }
+      }
+      return false;
+    }
 
     function arr_del(arr, obj) {
       var idx = arr.indexOf(obj);
