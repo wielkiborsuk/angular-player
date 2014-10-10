@@ -11,8 +11,12 @@ describe('Service: Dataservice', function () {
     Dataservice = _Dataservice_;
   }));
 
-  it('should do something', function () {
-    expect(!!Dataservice).toBe(true);
+  it('should be created successfully', function () {
+    expect(Dataservice).toBeTruthy();
   });
 
+  it('should initialize requried fields', function () {
+    expect(Dataservice.endpoint_url).toBeTruthy();
+    expect(Dataservice.mediabase).toBeTruthy();
+  });
 });

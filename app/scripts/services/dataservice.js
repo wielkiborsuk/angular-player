@@ -16,8 +16,8 @@ angular.module('angularPlayerApp')
       // mediabase: 'http://31.6.70.108:80/www/upload/',
       //endpoint_url: '/player/',
       //mediabase: '/www/upload/',
-      endpoint_url: 'http://alarmpi/player/',
-      mediabase: 'http://alarmpi/www/upload/',
+      endpoint_url: 'http://nora.no-ip.org/player/',
+      mediabase: 'http://nora.no-ip.org/www/upload/',
       brak: ''
     };
   });

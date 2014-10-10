@@ -83,7 +83,7 @@ angular.module('angularPlayerApp')
     function has_file(list, file) {
       if (list && list._id && file && file.path) {
         for (var i=0; i<list.files.length; i++) {
-          if (file.path == list.files[i].path) {
+          if (file.path === list.files[i].path) {
             return true;
           }
         }
