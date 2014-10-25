@@ -26,7 +26,7 @@ module.exports = function(config) {
       'bower_components/angular-resource/angular-resource.js',
       'bower_components/angular-route/angular-route.js',
       'bower_components/perfect-scrollbar/src/perfect-scrollbar.js',
-      'bower_components/angular-perfect-scrollbar/src/angular-perfect-scrollbar.js',
+      'bower_components/angular-perfect-scrollbar-allfix53/src/angular-perfect-scrollbar.js',
       'app/scripts/**/*.js',
       'test/mock/**/*.js',
       'test/spec/**/*.js'

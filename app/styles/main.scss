@@ -1,11 +1,12 @@
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
 // bower:scss
-@import "bootstrap-sass-official/assets/stylesheets/bootstrap.scss";
+@import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 // endbower
 @import "compass";
 @import "compass/css3";
+@import "compass/css3/flexbox";
 @import "sidebar.scss";
-@import "flexbox.scss";
+/*@import "flexbox.scss";*/
 
 @include font-face("droid_sans", font-files("droidsans-webfont.ttf", "droidsans-webfont.eot", "droidsans-webfont.woff"));
 
@@ -44,19 +45,24 @@ input::-webkit-slider-thumb {
 }
 
 .flex-h, .flex-v {
-  @include flexcontainer($alignitems: strech);
+  /*@include flexcontainer($alignitems: strech);*/
+  @include display-flex;
+  @include align-items(strech);
 }
 
 .flex-h {
-  @include flexprop(flex-direction, row);
+  /*@include flexprop(flex-direction, row);*/
+  @include flex-direction(row);
 }
 
 .flex-v {
-  @include flexprop(flex-direction, column);
+  /*@include flexprop(flex-direction, column);*/
+  @include flex-direction(column);
 }
 
 .spacer {
-  @include flexchild($flexgrow: 1, $flexshrink: 1, $flexbasis: 0);
+  /*@include flexchild($flexgrow: 1, $flexshrink: 1, $flexbasis: 0);*/
+  @include flex(1 1 0);
 }
 
 .filler {
