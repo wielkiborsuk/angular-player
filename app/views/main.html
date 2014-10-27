@@ -5,7 +5,8 @@
   <div ng-include="'views/controls.html'" ng-controller="ControlsCtrl" class="row"></div>
 
   <div class="row spacer flex-h">
-    <div ng-include="'views/list.html'" ng-controller="ListCtrl" class="col-xs-2 flex-v uncollapse"></div>
-    <div ng-include="'views/playlist.html'" ng-controller="ListCtrl" class="col-xs-10 flex-v" style="padding-left: 0px;"></div>
+    <div ng-include="'views/list.html'" ng-controller="ListCtrl" class="spacer col1 flex-v"></div>
+    <split-control class="split-control"></split-control>
+    <div ng-include="'views/playlist.html'" ng-controller="ListCtrl" class="spacer col5 flex-v" style="padding-left: 0px;"></div>
   </div>
 </div>

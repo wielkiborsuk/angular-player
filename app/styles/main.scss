@@ -50,6 +50,11 @@ input::-webkit-slider-thumb {
 
 .flex-h {
   @include flex-direction(row);
+
+  &.row {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 }
 
 .flex-v {
@@ -58,10 +63,31 @@ input::-webkit-slider-thumb {
 
 .spacer {
   @include flex(1 1 0);
+
+  &.col1 {}
+  &.col2 {
+    @include flex(2 2 0);
+  }
+  &.col3 {
+    @include flex(3 3 0);
+  }
+  &.col4 {
+    @include flex(4 4 0);
+  }
+  &.col5 {
+    @include flex(5 5 0);
+  }
 }
 
 .filler {
   height: 100%;
+}
+
+.split-control {
+  /*background-color: red;*/
+  min-width: 5px;
+  min-height: 5px;
+  cursor: col-resize;
 }
 
 .icon-align {
@@ -73,10 +99,6 @@ input::-webkit-slider-thumb {
   position: relative;
   background-color: #f7f5fa;
   border-radius: 5px;
-}
-
-.uncollapse {
-  transition: all 1s;
 }
 
 .non-opaque {
@@ -155,8 +177,5 @@ html {
 }
 
 @media (max-width: 768px) {
-  .uncollapse:hover {
-    width: 50%;
-  }
 }
 
