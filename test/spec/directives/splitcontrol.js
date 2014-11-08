@@ -15,7 +15,7 @@ describe('Directive: splitControl', function () {
   it('should make element draggable', inject(function ($compile) {
     element = angular.element('<split-control></split-control>');
     element = $compile(element)(scope);
-    console.log(element)
+
     expect(element.attr('draggable')).toBeTruthy();
   }));
 });
