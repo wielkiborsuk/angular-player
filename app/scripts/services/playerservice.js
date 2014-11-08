@@ -43,7 +43,11 @@ angular.module('angularPlayerApp')
       },
       seek: function (val) {
         var time = val / this.gradation * this.getDuration();
-        this.controls.player[0].currentTime = Math.max(Math.min(time, this.getDuration()), 0);
+        if (this.controls.player && !!this.controls.player[0].readyState) {
+          this.controls.player[0].currentTime = Math.max(Math.min(time, this.getDuration()), 0);
+        } else {
+          this.seekUpdate();
+        }
       },
       ff: function () {
         this.seek(this.gradation * (this.getTime() + 10) / this.getDuration());
@@ -62,27 +66,29 @@ angular.module('angularPlayerApp')
 
           var loaded = Math.min(buff/dur||0, 1);
           var played = Math.min(time/dur||0, loaded, 1);
-          this.controls.timeBar[0].style.background = this.getGradient(played, loaded);
+          this.controls.timeBar[0].style.backgroundImage = this.getGradient(played, loaded);
           this.controls.timeLabel.time = time;
           this.controls.timeLabel.duration = dur;
         }
       },
       getGradient: function (played, loaded) {
         var res = '-webkit-gradient(linear, left top, right bottom, ';
-        res += 'color-stop(0, #444444), color-stop({played}, #444444), ';
-        res += 'color-stop({played}, #999999), color-stop({loaded}, #999999), ';
+        //res += 'color-stop(0, #444444), ';
+        res += 'color-stop(0, #999999), ';
+        //res += 'color-stop({played}, #444444), color-stop({played}, #999999), ';
+        res += 'color-stop({loaded}, #999999), ';
         res += 'color-stop({loaded}, #c2c2c2), color-stop(1, #c2c2c2))';
         return res.replace(/{played}/g, played).replace(/{loaded}/g, loaded);
         // .replace(/{played2}/g, played+0.01).replace(/{loaded2}/g, loaded+0.01);
       },
       getTime: function () {
-        return this.controls.player[0].currentTime;
+        return this.controls.player[0].currentTime || 0;
       },
       getDuration: function () {
-        return this.controls.player[0].duration;
+        return this.controls.player[0].duration || 0;
       },
       getVolume: function () {
-        return this.controls.player[0].volume;
+        return this.controls.player[0].volume || 0;
       },
       getCurrentPath: function () {
         return this.controls.player[0].src;

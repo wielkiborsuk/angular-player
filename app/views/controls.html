@@ -4,7 +4,7 @@
 </audio>
 
 <div class="col-md-12">
-  <div class="btn btn-default btn-xs btn-block">
+  <div class="btn btn-default btn-xs btn-block range-container">
     <input type="range" id="audio" value="0" max="{{getGradation()}}" time-bar></input>
   </div>
 </div>
@@ -43,7 +43,7 @@
   <button type="button" class="btn btn-default" ng-class="{'active': flags.muted || player.volume==0}" ng-click="mute_toggle()">
     <i class="glyphicon" ng-class="{'glyphicon-volume-up': !flags.muted && getVolume()>0, 'glyphicon-volume-off': flags.muted || getVolume()==0}"></i>
   </button>
-  <span class="btn btn-default">
+  <span class="btn btn-default range-container">
     <input type="range" id="volume" volume-bar></input>
   </span>
   <button type="button" class="btn btn-default disabled">
