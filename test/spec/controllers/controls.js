@@ -1,10 +1,6 @@
 'use strict';
 
-ddescribe('Controller: ControlsCtrl', function () {
-
-  // load the controller's module
-  beforeEach(module('angularPlayerApp'));
-
+describe('Controller: ControlsCtrl', function () {
   var ControlsCtrl,
     playerservice,
     scope,
@@ -12,14 +8,49 @@ ddescribe('Controller: ControlsCtrl', function () {
     url,
     hb;
 
+  // load the controller's module
+  beforeEach(module('angularPlayerApp'));
+
+  beforeEach(
+    module(function($provide) {
+      playerservice = {
+        _paused: true,
+        gradation: 1000,
+        controls: {
+          timeBar: null,
+          volumeBar: null,
+          player: null,
+          timeBlocked: false,
+          timeLabel: {time:0, duration:0}
+        },
+        play: function () { this._paused = false; },
+        pause: function () { this._paused = true; },
+        paused: function () { return this._paused; },
+        mute_toggle: function () {},
+        muted: function () { return false; },
+        setVolume: function () {},
+        seek: function () {},
+        ff: function () {},
+        rev: function () {},
+      };
+
+      spyOn(playerservice, 'play').andCallThrough();
+      spyOn(playerservice, 'pause').andCallThrough();
+
+      $provide.value('Playerservice', playerservice);
+    })
+  );
+
+
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope, Playerservice, Dataservice, $httpBackend) {
     hb = $httpBackend;
-    playerservice = Playerservice;
     dataservice = Dataservice;
     scope = $rootScope.$new();
     scope.state = {};
+    scope.flags = {};
     url = dataservice.endpoint_url;
+
     ControlsCtrl = $controller('ControlsCtrl', {
       $scope: scope
     });
@@ -50,8 +81,14 @@ ddescribe('Controller: ControlsCtrl', function () {
   });
 
   it('starts and stops player on play/stop button presses', function () {
+    expect(scope.state.paused).toBeFalsy();
     scope.play_pause();
 
-    expect(playerservice).toBeTruthy();
+    expect(playerservice.play).toHaveBeenCalled();
+    expect(scope.flags.paused).toBeFalsy();
+    scope.play_pause();
+
+    expect(playerservice.pause).toHaveBeenCalled();
+    expect(scope.flags.paused).toBeTruthy();
   });
 });
