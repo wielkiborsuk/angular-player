@@ -1,6 +1,14 @@
 'use strict';
 
-angular.module('clientApp')
+/**
+ * @ngdoc filter
+ * @name angularPlayerApp.filter:timeDisplay
+ * @function
+ * @description
+ * # timeDisplay
+ * Filter in the angularPlayerApp.
+ */
+angular.module('angularPlayerApp')
   .filter('timeDisplay', function () {
     function padding(pad, str) {
       str = str.toString();

@@ -1,72 +1,12 @@
-<div class="container well">
-  <div class="row">
-    <h1 class="text-center">{{active.name}}&nbsp;</h1>
+<div class="flex-v filler">
+  <div class="row header">
+    <h3 class="ellipsize">{{state.active.name}}&nbsp;</h3>
   </div>
-  <div class="row">
-    <audio player autoplay preload="metadata" class="span9 offset2">
-      <source src="{{mediabase+curr}}" type="audio/mpeg">
-      Your browser does not support the audio element.
-    </audio>
-  </div>
-  <div ng-include="'views/controls.html'" class="row"><!--  ng-show="active.name"> --></div>
+  <div ng-include="'views/controls.html'" ng-controller="ControlsCtrl" class="row"></div>
 
-  <hr style="margin: 10px auto" />
-  <div class="row flex-parent">
-    <div class="span3 nav-box flex-parent-vertical">
-      <div class="btn-group btn-group-full flex-parent">
-          <button class="btn btn-small spacer" ng-class="{'active':listview=='files'}" ng-click="listview='files'">files</button>
-          <button class="btn btn-small spacer" ng-class="{'active':listview=='lists'}" ng-click="listview='lists'">lists</button>
-      </div>
-      <div class="flex-parent-vertical well spacer scroll-parent" ng-show="listview=='files'" >
-        <div class="scrolled spacer" perfect-scrollbar refresh-on-change="mediadirs+mediadirs.length">
-          <ul class="nav nav-list">
-            <li ng-class="{'active': li==active, 'inactive': li!=active}" ng-repeat="li in mediadirs">
-              <a ng-click="activate(li)" title="{{li.name}}" class="ellipsize">
-                {{li.name}}
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="input-append" ng-show="listview=='lists' && edit">
-        <input type="text" name="newName" id="new_name" ng-model="new_list.name" />
-        <button type="button" class="btn btn-small" ng-click="list_add()">Add</button>
-      </div>
-      <div class="well spacer flex-parent-vertical scroll-parent" ng-show="listview=='lists'">
-        <div class="scrolled spacer" perfect-scrollbar refresh-on-change="lists+lists.length">
-          <ul class="nav nav-list">
-            <li ng-class="{'active': li==active}" ng-repeat="li in lists">
-              <a ng-click="activate(li)" title="{{li.name}}" f-drop drop="li">
-                <div class="flex-parent">
-                  <span class="ellipsize spacer">{{li.name}}</span>
-                  <div ng-show="edit">
-                    <i class="icon-trash clickable center-icon" ng-click="list_delete(li, $event)"></i>
-                  </div>
-                </div>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="spacer well list-box flex-parent-vertical scroll-parent">
-      <div class="scrolled spacer" perfect-scrollbar refresh-on-change="active+active.files.length">
-        <ul class="nav nav-list">
-          <li ng-repeat="f in active.files" ng-class="{'active': f==curr}">
-            <a ng-click="select(f)" f-drag drag="f">
-              <div class="flex-parent">
-                <span class="ellipsize spacer">{{f.name}}</span>
-                <div ng-show="active_type=='lists' && edit">
-                    <i class="icon-trash clickable center-icon" ng-click="list_pop(active, f, $event)"></i>
-                </div>
-                <span class="badge queue-badge" ng-class="{'opaque': queue_pos(f)>-1, 'badge-info': queue_pos(f)>-1, 'non-opaque': queue_pos(f)<0}" ng-click="queue_toggle(f, $event)">
-                  {{queue_pos(f)+1 || '&nbsp;'}}
-                </span>
-              </div>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
+  <div class="row spacer flex-h">
+    <div ng-include="'views/list.html'" ng-controller="ListCtrl" class="spacer col1 flex-v"></div>
+    <split-control class="split-control"></split-control>
+    <div ng-include="'views/playlist.html'" ng-controller="ListCtrl" class="spacer col5 flex-v" style="padding-left: 0px;"></div>
   </div>
 </div>

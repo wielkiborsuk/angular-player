@@ -1,8 +1,15 @@
 'use strict';
 
-angular.module('clientApp')
-  .service('listsService', function listsService($http, dataService) {
-    var url = dataService.endpoint_url;
+/**
+ * @ngdoc service
+ * @name angularPlayerApp.Listsservice
+ * @description
+ * # Listsservice
+ * Service in the angularPlayerApp.
+ */
+angular.module('angularPlayerApp')
+  .service('Listsservice', function Listsservice($http, Dataservice) {
+    var url = Dataservice.endpoint_url;
 
     return {
       scanned: function () {
@@ -29,6 +36,6 @@ angular.module('clientApp')
       list_delete: function (listid) {
         return $http.delete(url+'list/'+listid);
       },
-      base: dataService.upload_base_url
+      base: Dataservice.mediabase
     };
   });

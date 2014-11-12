@@ -1,0 +1,202 @@
+$icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+// bower:scss
+@import "bootstrap-sass-official/assets/stylesheets/bootstrap.scss";
+// endbower
+@import "compass";
+@import "compass/css3";
+@import "compass/css3/flexbox";
+@import "sidebar.scss";
+
+@include font-face("droid_sans", font-files("droidsans-webfont.ttf", "droidsans-webfont.eot", "droidsans-webfont.woff"));
+
+.ellipsize {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.range-containe, .range-container:hover, .range-container:focus, .range-container:active {
+  background: transparent;
+  box-shadow: none;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  -moz-apperance:none;
+  apperance:none;
+  background-image: linear-gradient(to right, rgba(175, 175, 175, 0.3) 0%, rgba(175, 175, 175, 0.3) 100%);
+  background-size: 100% 4px;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: inline-block;
+  vertical-align: middle;
+  height: 10px;
+  width: 100%;
+  margin: 0px;
+  margin-bottom: 3px;
+  overflow: hidden;
+}
+
+input::-webkit-slider-thumb {
+  -webkit-appearance:none;
+  -moz-apperance:none;
+  apperance:none;
+  vertical-align: middle;
+  width:10px;
+  height:10px;
+  border-radius:10px;
+  position: relative;
+  @include background-image(linear-gradient(#333333, #555555 49%, #5e5e5e 51%, #8e8e8e));
+  pointer-events: none;
+}
+
+input[type=range]::-webkit-slider-thumb:before {
+  position: absolute;
+  top: 3px;
+  left: -2000px;
+  width: 2000px;
+  height: 4px;
+  background: #555555;
+  content: ' ';
+}
+
+.flex-h, .flex-v {
+  @include display-flex;
+  @include align-items(strech);
+}
+
+.flex-h {
+  @include flex-direction(row);
+
+  &.row {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+.flex-v {
+  @include flex-direction(column);
+}
+
+.spacer {
+  @include flex(1 1 0);
+
+  &.col1 {}
+  &.col2 {
+    @include flex(2 2 0);
+  }
+  &.col3 {
+    @include flex(3 3 0);
+  }
+  &.col4 {
+    @include flex(4 4 0);
+  }
+  &.col5 {
+    @include flex(5 5 0);
+  }
+}
+
+.filler {
+  height: 100%;
+}
+
+.split-control {
+  /*background-color: red;*/
+  min-width: 5px;
+  min-height: 5px;
+  cursor: col-resize;
+}
+
+.icon-align {
+  padding: 2px;
+}
+
+.scrolled {
+  overflow: hidden;
+  position: relative;
+  background-color: #f7f5fa;
+  border-radius: 5px;
+}
+
+.non-opaque {
+  opacity: 0.1;
+}
+
+.opaque {
+  opacity: 1;
+}
+
+.scrolled {
+  > div {
+    @extend .flex-v, .spacer;
+    /*display: block;*/
+  }
+}
+
+.dragged {
+  opacity:  0.6;
+  border-top: solid 1px #563d7c;
+  border-bottom: solid 1px #563d7c;
+}
+
+.drop-over {
+  border-right: solid 2px #563d7c;
+}
+
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+/* Space out content a bit */
+body {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  height: 100%;
+  font-family: droid_sans;
+}
+
+html {
+  height: 100%;
+}
+
+.row {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header,
+.marketing,
+.footer {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* Custom page header */
+.header {
+  border-bottom: 1px solid #e5e5e5;
+
+  /* Make the masthead heading the same height as the navigation */
+  h3 {
+    margin-top: 0px;
+    margin-bottom: 5px;
+  }
+}
+
+/* Custom page footer */
+.footer {
+  padding-top: 19px;
+  color: #777;
+  border-top: 1px solid #e5e5e5;
+}
+
+@media (max-width: 768px) {
+}
+

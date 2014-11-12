@@ -1,9 +1,9 @@
 'use strict';
 
-describe('Directive: timeChanged', function () {
+describe('Directive: timeBar', function () {
 
   // load the directive's module
-  beforeEach(module('clientApp'));
+  beforeEach(module('angularPlayerApp'));
 
   var element,
     scope;
@@ -13,8 +13,8 @@ describe('Directive: timeChanged', function () {
   }));
 
   it('should make hidden element visible', inject(function ($compile) {
-    element = angular.element('<time-changed></time-changed>');
+    element = angular.element('<time-bar></time-bar>');
     element = $compile(element)(scope);
-    // expect(element.text()).toBe('this is the timeChanged directive');
+    //expect(element.text()).toBe('this is the timeBar directive');
   }));
 });

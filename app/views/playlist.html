@@ -1,0 +1,15 @@
+<perfect-scrollbar class="scrolled spacer flex-v" refresh-on-change="state.active+state.active.files.length">
+  <ul class="nav bs-sidenav spacer">
+    <li ng-repeat="f in state.active.files" ng-class="{'active': f==state.curr}">
+      <a ng-click="select(f)" file-drag drag="f" dragstyle="dragged">
+        <div class="flex-h">
+          <span class="ellipsize spacer">{{f.name}}</span>
+          <span class="badge clickable" ng-class="{'opaque': queue_pos(f)>-1, 'badge-info': queue_pos(f)>-1, 'non-opaque': queue_pos(f)<0}" ng-click="queue_toggle(f, $event)">
+            {{queue_pos(f)+1 || '&nbsp;'}}
+          </span>
+          <span ng-show="state.active_type=='lists' && flags.edit" style="margin-left: 5px;" class="glyphicon glyphicon-trash icon-align clickable" ng-click="list_pop(state.active, f, $event)"></span>
+        </div>
+      </a>
+    </li>
+  </ul>
+</perfect-scrollbar>

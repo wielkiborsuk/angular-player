@@ -2,7 +2,8 @@
 
 describe('Filter: timeDisplay', function () {
 
-  beforeEach(module('clientApp'));
+  // load the filter's module
+  beforeEach(module('angularPlayerApp'));
 
   var timeDisplay;
   var t1, t2, t3;

@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Directive: player', function () {
+describe('Directive: splitControl', function () {
 
   // load the directive's module
   beforeEach(module('angularPlayerApp'));
@@ -12,9 +12,10 @@ describe('Directive: player', function () {
     scope = $rootScope.$new();
   }));
 
-  it('should make hidden element visible', inject(function ($compile) {
-    element = angular.element('<player></player>');
+  it('should make element draggable', inject(function ($compile) {
+    element = angular.element('<split-control></split-control>');
     element = $compile(element)(scope);
-    //expect(element.text()).toBe('this is the player directive');
+
+    expect(element.attr('draggable')).toBeTruthy();
   }));
 });

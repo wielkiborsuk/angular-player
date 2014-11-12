@@ -1,9 +1,22 @@
 'use strict';
 
-angular.module('clientApp', [
-  'ngResource'
-])
-  .config(['$routeProvider', function ($routeProvider) {
+/**
+ * @ngdoc overview
+ * @name angularPlayerApp
+ * @description
+ * # angularPlayerApp
+ *
+ * Main module of the application.
+ */
+angular
+  .module('angularPlayerApp', [
+    'ngAnimate',
+    'ngCookies',
+    'ngResource',
+    'ngRoute',
+    'perfect_scrollbar'
+  ])
+  .config(function ($routeProvider, $sceProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -12,4 +25,6 @@ angular.module('clientApp', [
       .otherwise({
         redirectTo: '/'
       });
-  }]);
+
+    $sceProvider.enabled(false);
+  });

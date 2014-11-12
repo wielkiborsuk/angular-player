@@ -1,9 +1,9 @@
 'use strict';
 
-describe('Directive: fDrop', function () {
+describe('Directive: fileDrop', function () {
 
   // load the directive's module
-  beforeEach(module('clientApp'));
+  beforeEach(module('angularPlayerApp'));
 
   var element,
     comp,
@@ -38,7 +38,7 @@ describe('Directive: fDrop', function () {
   it('should add all drop-related attributes and binds to element', function () {
     expect(scope.hasOwnProperty('dropData')).toBe(false);
     expect(scope.hasOwnProperty('dropStyle')).toBe(false);
-    element = angular.element('<div f-drop></div>');
+    element = angular.element('<div file-drop></div>');
     element = comp(element)(scope);
 
     expect(scope.hasOwnProperty('dropData')).toBe(true);
@@ -51,7 +51,7 @@ describe('Directive: fDrop', function () {
     scope.el = ['hohoho'];
     expect(scope.hasOwnProperty('dropData')).toBe(false);
     expect(scope.hasOwnProperty('dropStyle')).toBe(false);
-    element = angular.element('<div f-drop drop="el" dropstyle="highlight"></div>');
+    element = angular.element('<div file-drop drop="el" dropstyle="highlight"></div>');
     element = comp(element)(scope);
 
     expect(scope.dropData).toEqual(['hohoho']);
@@ -62,7 +62,7 @@ describe('Directive: fDrop', function () {
     scope.el = ['hohoho'];
     expect(scope.hasOwnProperty('dropData')).toBe(false);
     expect(scope.hasOwnProperty('dropStyle')).toBe(false);
-    element = angular.element('<div f-drop drop="el" dropstyle="highlight"></div>');
+    element = angular.element('<div file-drop drop="el" dropstyle="highlight"></div>');
     element = comp(element)(scope);
 
     element.triggerHandler(dragenterEvent);

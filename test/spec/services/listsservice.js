@@ -1,17 +1,18 @@
 'use strict';
 
-describe('Service: listsservice', function () {
+describe('Service: Listsservice', function () {
 
-  beforeEach(module('clientApp'));
+  // load the service's module
+  beforeEach(module('angularPlayerApp'));
 
   var listsService;
   var dataService;
   var httpBackend;
   var url;
-  beforeEach(inject(function (_listsService_, _dataService_, _$httpBackend_) {
-    listsService = _listsService_;
+  beforeEach(inject(function (_Listsservice_, _Dataservice_, _$httpBackend_) {
+    listsService = _Listsservice_;
     httpBackend = _$httpBackend_;
-    dataService = _dataService_;
+    dataService = _Dataservice_;
     url = dataService.endpoint_url;
     var list2 = {
       name: 'list2',

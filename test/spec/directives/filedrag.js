@@ -1,9 +1,9 @@
 'use strict';
 
-describe('Directive: fDrag', function () {
+describe('Directive: fileDrag', function () {
 
   // load the directive's module
-  beforeEach(module('clientApp'));
+  beforeEach(module('angularPlayerApp'));
 
   var element,
     comp,
@@ -29,7 +29,7 @@ describe('Directive: fDrag', function () {
   it('should add all drag-related attributes and binds to an object', function () {
     expect(scope.hasOwnProperty('dragData')).toBe(false);
     expect(scope.hasOwnProperty('dragStyle')).toBe(false);
-    element = angular.element('<div f-drag drag="el"></div>');
+    element = angular.element('<div file-drag drag="el"></div>');
     element = comp(element)(scope);
 
     expect(element.attr('draggable')).toEqual('true');
@@ -43,7 +43,7 @@ describe('Directive: fDrag', function () {
     scope.el = 'hohoho';
     expect(scope.hasOwnProperty('dragData')).toBe(false);
     expect(scope.hasOwnProperty('dragStyle')).toBe(false);
-    element = angular.element('<div f-drag drag="el" dragstyle="highlight"></div>');
+    element = angular.element('<div file-drag drag="el" dragstyle="highlight"></div>');
     element = comp(element)(scope);
 
     expect(scope.dragData).toEqual('hohoho');
@@ -54,7 +54,7 @@ describe('Directive: fDrag', function () {
     scope.el = 'hohoho';
     expect(scope.hasOwnProperty('dragData')).toBe(false);
     expect(scope.hasOwnProperty('dragStyle')).toBe(false);
-    element = angular.element('<div f-drag drag="el" dragstyle="highlight"></div>');
+    element = angular.element('<div file-drag drag="el" dragstyle="highlight"></div>');
     element = comp(element)(scope);
 
     element.triggerHandler(dragstartEvent);
