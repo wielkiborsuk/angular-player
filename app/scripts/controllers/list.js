@@ -52,7 +52,9 @@ angular.module('angularPlayerApp')
     };
 
     $scope.list_delete = function(li, $event) {
-      $event.stopPropagation();
+      if ($event) {
+        $event.stopPropagation();
+      }
       if (li) {
         if (li._id) {
           Listsservice.list_delete(li._id).success(function(/*res*/) {
