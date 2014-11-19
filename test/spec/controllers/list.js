@@ -90,37 +90,30 @@ describe('Controller: ListCtrl', function () {
     expect(scope.state.lists[l-1]._id).not.toEqual('123');
   });
 
-  //FIXME - maybe add at least some kind of failing test :D
   it('should modify list list_push and list_pop methods', function () {
+    var file_entry = {name: 'test_file.mp3', path: '/path/to/test_file.mp3'};
     expect(scope.state.lists[0]).toEqual(list2);
     expect(list2.files.length).toBe(2);
 
     scope.flags.edit = true;
     hb.expectPUT(url + 'list/1');
-    scope.list_push(list2, {name: 'test_file.mp3', path: '/path/to/test_file.mp3'});
+    scope.list_push(list2, file_entry);
     hb.flush();
 
     expect(list2.files.length).toBe(3);
     expect(list2.files[list2.files.length-1].name).toEqual('test_file.mp3');
 
-    //nothing should change here
-    //hb.expectPUT(url + 'list/1');
-    scope.list_push(list2, {name: 'test_file.mp3', path: '/path/to/test_file.mp3'});
-    //hb.flush();
+    //nothing should change here - the call to backend is not even made
+    scope.list_push(list2, file_entry);
 
     expect(list2.files.length).toBe(3);
     expect(list2.files[list2.files.length-1].name).toEqual('test_file.mp3');
-
-    //console.log(list2.files);
 
     hb.expectPUT(url + 'list/1');
-    scope.list_pop(list2, {name: 'test_file.mp3', path: '/path/to/test_file.mp3'});
+    scope.list_pop(list2, file_entry);
     hb.flush();
 
-    //console.log(list2.files);
-    //FIXME - removing doesn't seem to work
-
-    //expect(list2.files.length).toBe(2);
-    //expect(list2.files[list2.files.length-1].name).not.toEqual('test_file.mp3');
+    expect(list2.files.length).toBe(2);
+    expect(list2.files[list2.files.length-1].name).not.toEqual('test_file.mp3');
   });
 });
