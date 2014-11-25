@@ -36,7 +36,7 @@ angular.module('angularPlayerApp')
         return this.controls.player[0].paused;
       },
       mute_toggle: function () {
-        this.controls.player[0].muted = this.getMuted();
+        this.controls.player[0].muted = !this.muted();
       },
       muted: function () {
         return this.controls.player[0].muted;
