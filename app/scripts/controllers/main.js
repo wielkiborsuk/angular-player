@@ -27,7 +27,7 @@ angular.module('angularPlayerApp')
       type: $routeParams.type,
       list: $routeParams.list,
       song: $routeParams.song
-    }
+    };
 
     $scope.flags = {
       muted: false,
@@ -90,10 +90,10 @@ angular.module('angularPlayerApp')
     };
 
     $scope.activate_by_name = function (name) {
-      var arr = ($scope.state.listview=='files' ? $scope.state.mediadirs : $scope.state.lists);
+      var arr = ($scope.state.listview==='files' ? $scope.state.mediadirs : $scope.state.lists);
       for (var i=0; i<arr.length; i++) {
         var t = arr[i];
-        if (t.name == name) {
+        if (t.name === name) {
           $scope.activate(t);
           break;
         }
@@ -113,7 +113,7 @@ angular.module('angularPlayerApp')
         var arr = $scope.state.active.files;
         for (var i=0; i<arr.length; i++) {
           var t = arr[i];
-          if (t.name == name) {
+          if (t.name === name) {
             $scope.select(t);
             break;
           }

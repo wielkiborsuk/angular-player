@@ -35,9 +35,6 @@ angular.module('angularPlayerApp')
           type: null,
           list: null,
           song: null
-          //type: $routeParams.type,
-          //list: $routeParams.list,
-          //song: $routeParams.song
         }
       }
     };
