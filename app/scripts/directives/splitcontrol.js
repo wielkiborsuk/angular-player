@@ -21,7 +21,7 @@ angular.module('angularPlayerApp')
           count += 1;
           var wid = parent.innerWidth() - 30;
           var x = evt.originalEvent.pageX-15;
-          if (!!wid && !!x && !(count % 2)) {
+          if (!!wid && !!x && (count % 2)===0) {
             var prop = (wid-x)/x;
             element.next().css('flex', ''+prop+' '+prop+' 0');
           }

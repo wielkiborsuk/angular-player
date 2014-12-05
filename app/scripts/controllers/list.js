@@ -9,30 +9,29 @@
  */
 angular.module('angularPlayerApp')
   .controller('ListCtrl', function ($scope, Listsservice/*, Playerservice*/) {
-    //Listsservice.smscan().then(function (res) {
-      //Listsservice.scanned().then(function (res) {
-        //$scope.mediadirs = res.data;
-      //});
-    //});
 
-    Listsservice.scanned().then(function (res) {
-      $scope.state.mediadirs = res.data;
-    });
+    if (!Object.keys($scope.state.mediadirs).length) {
+      Listsservice.scanned().then(function (res) {
+        $scope.state.mediadirs = res.data;
+        $scope.activate_by_name($scope.state.path.list);
+        $scope.select_by_name($scope.state.path.song);
+      });
+    }
 
-    Listsservice.list_list().then(function (res) {
-      $scope.state.lists = res.data;
-    });
-
-    $scope.activate = function (li) {
-      $scope.state.active = li;
-      $scope.state.active_type = $scope.state.listview;
-      $scope.state.song_queue.splice(0, $scope.state.song_queue.length);
-    };
+    if (!Object.keys($scope.state.lists).length) {
+      Listsservice.list_list().then(function (res) {
+        $scope.state.lists = res.data;
+        $scope.activate_by_name($scope.state.path.list);
+        $scope.select_by_name($scope.state.path.song);
+      });
+    }
 
     $scope.rescan = function () {
       Listsservice.smscan().then(function (/*res*/) {
         Listsservice.scanned().then(function (res) {
           $scope.state.mediadirs = res.data;
+          $scope.activate_by_name($scope.state.path.list);
+          $scope.select_by_name($scope.state.path.song);
         });
       });
     };
