@@ -18,6 +18,21 @@ angular.module('angularPlayerApp')
       //mediabase: '/www/upload/',
       endpoint_url: 'http://nora.no-ip.org/player/',
       mediabase: 'http://nora.no-ip.org/www/upload/',
-      brak: ''
+      brak: '',
+
+
+      state: {
+        active: {},
+        curr: '',
+        song_queue: [],
+        new_list: {},
+        mediadirs: {},
+        lists: {},
+        path: {
+          type: null,
+          list: null,
+          song: null
+        }
+      }
     };
   });

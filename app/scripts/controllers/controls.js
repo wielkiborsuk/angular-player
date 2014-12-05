@@ -90,6 +90,10 @@ angular.module('angularPlayerApp')
       $scope.flags.repeat = !$scope.flags.repeat;
     };
 
+    $scope.link_toggle = function () {
+      $scope.flags.link = !$scope.flags.link;
+    };
+
     $scope.edit_toggle = function () {
       $scope.flags.edit = !$scope.flags.edit;
     };

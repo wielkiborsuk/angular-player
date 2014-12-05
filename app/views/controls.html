@@ -39,6 +39,10 @@
   <button type="button" class="btn btn-default" ng-show="flags.edit" ng-click="rescan()">
     <i class="glyphicon glyphicon-refresh"></i>
   </button>
+  <button type="button" class="btn btn-default" ng-class="{'active': flags.link}" ng-show="flags.edit" ng-click="link_toggle()">
+    <i class="glyphicon glyphicon-link"></i>
+  </button>
+
   <span class="btn btn-default disabled spacer">&nbsp;</span>
   <button type="button" class="btn btn-default" ng-class="{'active': flags.muted || player.volume==0}" ng-click="mute_toggle()">
     <i class="glyphicon" ng-class="{'glyphicon-volume-up': !flags.muted && getVolume()>0, 'glyphicon-volume-off': flags.muted || getVolume()==0}"></i>
