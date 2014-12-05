@@ -22,10 +22,7 @@ angular.module('angularPlayerApp')
 
 
       state: {
-        //listview: $routeParams.type || 'files',
-        listview: 'lists',
         active: {},
-        active_type: '',
         curr: '',
         song_queue: [],
         new_list: {},

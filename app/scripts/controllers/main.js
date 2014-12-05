@@ -21,10 +21,15 @@ angular.module('angularPlayerApp')
       return original.apply($location, [path]);
     };
 
+    $location.path2 = function (path, reload) {
+      if ($scope.flags.link) {
+        $location.path(path, reload);
+      }
+    };
+
     $scope.state = Dataservice.state;
-    $scope.state.listview = $routeParams.type || 'files';
     $scope.state.path = {
-      type: $routeParams.type,
+      type: $routeParams.type || 'files',
       list: $routeParams.list,
       song: $routeParams.song
     };
@@ -34,6 +39,7 @@ angular.module('angularPlayerApp')
       random: false,
       repeat: false,
       edit: false,
+      link: false,
       paused: true
     };
 
@@ -83,14 +89,33 @@ angular.module('angularPlayerApp')
       return Playerservice.getCurrentPath();
     };
 
+    $scope.isEditable = function (list) {
+      return !list.path;
+    };
+
+    $scope.isTypeSelected = function (type) {
+      return $scope.state.path.type === type;
+    };
+
+    $scope.getCurrentPermalink = function () {
+      var p = $scope.state.path;
+      var tmpPath = [''].concat([p.type, p.list, p.file]).concat(['']);
+      return tmpPath.join('/').replace(/\/+/g, '/');
+    };
+
+    $scope.setPathObject = function (type, list, file) {
+      $scope.state.path.type = type || $scope.state.path.type;
+      $scope.state.path.list = (type ? list : (list || $scope.state.path.list));
+      $scope.state.path.file = ((type || list) ? file : (file || $scope.state.path.type));
+    }
+
     $scope.tab_select = function (name) {
-      $scope.state.listview = name;
-      $scope.state.path.type = name;
-      $location.path('/'+name+'/', false);
+      $scope.setPathObject(name);
+      $location.path2($scope.getCurrentPermalink(), false);
     };
 
     $scope.activate_by_name = function (name) {
-      var arr = ($scope.state.listview==='files' ? $scope.state.mediadirs : $scope.state.lists);
+      var arr = ($scope.isTypeSelected('files') ? $scope.state.mediadirs : $scope.state.lists);
       for (var i=0; i<arr.length; i++) {
         var t = arr[i];
         if (t.name === name) {
@@ -102,10 +127,9 @@ angular.module('angularPlayerApp')
 
     $scope.activate = function (li) {
       $scope.state.active = li;
-      $scope.state.active_type = $scope.state.listview;
       $scope.state.song_queue.splice(0, $scope.state.song_queue.length);
-      $scope.state.path.list = li.name;
-      $location.path('/'+$scope.state.path.type+'/'+li.name+'/', false);
+      $scope.setPathObject(null, li.name);
+      $location.path2($scope.getCurrentPermalink(), false);
     };
 
     $scope.select_by_name = function (name) {
@@ -130,7 +154,7 @@ angular.module('angularPlayerApp')
           $scope.state.song_queue.push(f);
         }
       }
-      $scope.state.path.song = f.name;
-      $location.path('/'+$scope.state.path.type+'/'+$scope.state.path.list+'/'+f.name+'/', false);
+      $scope.setPathObject(null, null, f.name);
+      $location.path2($scope.getCurrentPermalink(), false);
     };
   });
