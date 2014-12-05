@@ -16,8 +16,10 @@ describe('Controller: ListCtrl', function () {
   beforeEach(inject(function ($controller, $rootScope, $httpBackend, Dataservice) {
     hb = $httpBackend;
     scope = $rootScope.$new();
-    scope.state = {song_queue: []};
+    scope.state = {song_queue: [], lists:{}, mediadirs:{}, path:{}};
     scope.flags = {};
+    scope.activate_by_name = function () {};
+    scope.select_by_name = function () {};
     url = Dataservice.endpoint_url;
     cont = $controller;
 
@@ -43,6 +45,9 @@ describe('Controller: ListCtrl', function () {
     hb.when('DELETE', url+'list/123').respond(200);
     hb.when('PUT', url+'list/1').respond(200);
 
+    spyOn(scope, 'activate_by_name');
+    spyOn(scope, 'select_by_name');
+
     ListCtrl = cont('ListCtrl', {
       $scope: scope
     });
@@ -50,6 +55,10 @@ describe('Controller: ListCtrl', function () {
   }));
 
   it('should check the server for the latest lists feed on creation', function () {
+    scope.state.mediadirs = {};
+    scope.state.lists = {};
+    expect(Object.keys(scope.state.mediadirs).length).toBe(0);
+    expect(Object.keys(scope.state.lists).length).toBe(0);
     hb.expectGET(url + 'scanned/');
     hb.expectGET(url + 'list/');
     cont('ListCtrl', {
@@ -58,9 +67,12 @@ describe('Controller: ListCtrl', function () {
     hb.flush();
 
     expect(scope.state.mediadirs).toBeTruthy();
+    expect(Object.keys(scope.state.mediadirs).length).toBe(1);
+    expect(scope.state.lists).toBeTruthy();
+    expect(Object.keys(scope.state.lists).length).toBe(1);
   });
 
-  it('should change application state accordingly, when list is activated', function () {
+  xit('should change application state accordingly, when list is activated', function () {
     scope.activate(list2);
 
     expect(scope.state.active).toEqual(list2);
