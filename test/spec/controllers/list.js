@@ -81,7 +81,7 @@ describe('Controller: ListCtrl', function () {
   });
 
   it('should call appropriate create/delete methods for lists', function () {
-    scope.state.new_list = { name: 'new_list' }
+    scope.state.new_list = { name: 'new_list' };
 
     hb.expectPOST(url + 'list/');
     scope.list_add();

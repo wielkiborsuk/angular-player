@@ -20,7 +20,7 @@ describe('Controller: MainCtrl', function () {
     scope = $rootScope.$new();
     event = {
       stopPropagation: function () {}
-    }
+    };
     spyOn(event, 'stopPropagation');
 
     spyOn(sPlayer, 'getVolume').andReturn(10);
@@ -28,8 +28,8 @@ describe('Controller: MainCtrl', function () {
     spyOn(sPlayer, 'paused').andReturn(true);
     spyOn(sPlayer, 'select');
 
-    file1 = {name: 'file1.mp3', path: '/path/to/file1.mp3'}
-    file2 = {name: 'file2.mp3', path: '/path/to/file2.mp3'}
+    file1 = {name: 'file1.mp3', path: '/path/to/file1.mp3'};
+    file2 = {name: 'file2.mp3', path: '/path/to/file2.mp3'};
 
     MainCtrl = $controller('MainCtrl', {
       $scope: scope

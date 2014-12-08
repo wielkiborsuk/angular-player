@@ -7,6 +7,7 @@
           <span class="badge clickable" ng-class="{'opaque': queue_pos(f)>-1, 'badge-info': queue_pos(f)>-1, 'non-opaque': queue_pos(f)<0}" ng-click="queue_toggle(f, $event)">
             {{queue_pos(f)+1 || '&nbsp;'}}
           </span>
+          <span ng-show="state.pinned" style="margin-left: 5px;" class="glyphicon glyphicon-plus-sign icon-align clickable" ng-click="list_push(state.pinned, f, $event)"></span>
           <span ng-show="isEditable(state.active) && flags.edit" style="margin-left: 5px;" class="glyphicon glyphicon-trash icon-align clickable" ng-click="list_pop(state.active, f, $event)"></span>
         </div>
       </a>

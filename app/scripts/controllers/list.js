@@ -65,7 +65,10 @@ angular.module('angularPlayerApp')
       }
     };
 
-    $scope.list_push = function(li, f) {
+    $scope.list_push = function(li, f, $event) {
+      if ($event) {
+        $event.stopPropagation();
+      }
       if ($scope.flags.edit && li && li._id && !has_file(li,f)) {
         li.files.push(f);
         Listsservice.list_put(li._id, li);
@@ -79,6 +82,19 @@ angular.module('angularPlayerApp')
           Listsservice.list_put(li._id, li);
         }
       }
+    };
+
+    $scope.pin_list = function (li, $event) {
+      if ($event) {
+        $event.stopPropagation();
+      }
+      if (li && li._id) {
+        $scope.state.pinned = li;
+      }
+    };
+
+    $scope.unpin_list = function () {
+      $scope.state.pinned = null;
     };
 
     function has_file(list, file) {
