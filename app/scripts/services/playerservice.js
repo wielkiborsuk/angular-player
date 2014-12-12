@@ -16,7 +16,8 @@ angular.module('angularPlayerApp')
         volumeBar: null,
         player: null,
         timeBlocked: false,
-        timeLabel: {time:0, duration:0}
+        timeLabel: {time:0, duration:0},
+        speedLabel: {speed:1}
       },
       setVolume: function (vol) {
         if (!isNaN(vol)) {
@@ -103,6 +104,16 @@ angular.module('angularPlayerApp')
       },
       timeBlock: function (val) {
         this.controls.timeBlocked = val;
+      },
+      speedUp: function () {
+        this.controls.player[0].playbackRate += 0.1;
+        this.controls.player[0].defaultPlaybackRate = this.controls.player[0].playbackRate;
+        this.controls.speedLabel.speed = this.controls.player[0].playbackRate;
+      },
+      slowDown: function () {
+        this.controls.player[0].playbackRate -= 0.1;
+        this.controls.player[0].defaultPlaybackRate = this.controls.player[0].playbackRate;
+        this.controls.speedLabel.speed = this.controls.player[0].playbackRate;
       }
     };
   });

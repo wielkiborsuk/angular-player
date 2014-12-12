@@ -32,7 +32,7 @@ angular.module('angularPlayerApp')
         element.bind('dragenter', function(evt) {
           dragEnter(evt, element, scope.dropStyle);
         });
-        
+
         element.bind('dragleave', function(evt) {
           dragLeave(evt, element, scope.dropStyle);
         });

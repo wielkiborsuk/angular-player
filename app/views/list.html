@@ -1,3 +1,8 @@
+      <div class="alert alert-info" ng-show="state.pinned" role="alert">
+        <button type="button" class="close" ng-click="unpin_list()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <span>Pinned list:</span>
+        <span>{{state.pinned.name}}</span>
+      </div>
       <perfect-scrollbar class="scrolled spacer flex-v" ng-show="isTypeSelected('files')" refresh-on-change="state.mediadirs+state.mediadirs.length">
         <ul class="nav bs-sidenav spacer">
           <li ng-class="{'active': li==state.active}" ng-repeat="li in state.mediadirs">
@@ -13,6 +18,7 @@
             <a ng-click="activate(li)" title="{{li.name}}" file-drop drop="li" dropstyle="drop-over">
               <div class="flex-h">
                 <span class="ellipsize spacer">{{li.name}}</span>
+                <span ng-show="flags.edit" class="glyphicon glyphicon-pushpin clickable icon-align" ng-click="pin_list(li, $event)"></span>
                 <span ng-show="flags.edit" class="glyphicon glyphicon-trash clickable icon-align" ng-click="list_delete(li, $event)"></span>
               </div>
             </a>

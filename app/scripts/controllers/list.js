@@ -65,14 +65,20 @@ angular.module('angularPlayerApp')
       }
     };
 
-    $scope.list_push = function(li, f) {
+    $scope.list_push = function(li, f, $event) {
+      if ($event) {
+        $event.stopPropagation();
+      }
       if ($scope.flags.edit && li && li._id && !has_file(li,f)) {
         li.files.push(f);
         Listsservice.list_put(li._id, li);
       }
     };
 
-    $scope.list_pop = function(li, f/*, $event*/) {
+    $scope.list_pop = function(li, f, $event) {
+      if ($event) {
+        $event.stopPropagation();
+      }
       if (li && f) {
         arr_del(li.files, f);
         if (li._id) {
@@ -80,6 +86,21 @@ angular.module('angularPlayerApp')
         }
       }
     };
+
+    $scope.pin_list = function (li, $event) {
+      if ($event) {
+        $event.stopPropagation();
+      }
+      if (li && li._id) {
+        $scope.state.pinned = li;
+      }
+    };
+
+    $scope.unpin_list = function () {
+      $scope.state.pinned = null;
+    };
+
+    $scope.has_file = has_file;
 
     function has_file(list, file) {
       if (list && list._id && file && file.path) {

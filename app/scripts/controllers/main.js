@@ -107,7 +107,7 @@ angular.module('angularPlayerApp')
       $scope.state.path.type = type || $scope.state.path.type;
       $scope.state.path.list = (type ? list : (list || $scope.state.path.list));
       $scope.state.path.file = ((type || list) ? file : (file || $scope.state.path.type));
-    }
+    };
 
     $scope.tab_select = function (name) {
       $scope.setPathObject(name);

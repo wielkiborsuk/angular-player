@@ -44,6 +44,15 @@
   </button>
 
   <span class="btn btn-default disabled spacer">&nbsp;</span>
+  <button type="button" class="btn btn-default" ng-click="slow_down()" ng-show="flags.edit">
+    <i class="glyphicon glyphicon-minus"></i>
+  </button>
+  <button type="button" class="btn btn-default disabled" ng-show="flags.edit">
+    {{speedLabel.speed | number: 1}}
+  </button>
+  <button type="button" class="btn btn-default" ng-click="speed_up()" ng-show="flags.edit">
+    <i class="glyphicon glyphicon-plus"></i>
+  </button>
   <button type="button" class="btn btn-default" ng-class="{'active': flags.muted || player.volume==0}" ng-click="mute_toggle()">
     <i class="glyphicon" ng-class="{'glyphicon-volume-up': !flags.muted && getVolume()>0, 'glyphicon-volume-off': flags.muted || getVolume()==0}"></i>
   </button>
