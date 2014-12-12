@@ -75,7 +75,10 @@ angular.module('angularPlayerApp')
       }
     };
 
-    $scope.list_pop = function(li, f/*, $event*/) {
+    $scope.list_pop = function(li, f, $event) {
+      if ($event) {
+        $event.stopPropagation();
+      }
       if (li && f) {
         arr_del(li.files, f);
         if (li._id) {
@@ -96,6 +99,8 @@ angular.module('angularPlayerApp')
     $scope.unpin_list = function () {
       $scope.state.pinned = null;
     };
+
+    $scope.has_file = has_file;
 
     function has_file(list, file) {
       if (list && list._id && file && file.path) {

@@ -1,7 +1,6 @@
-      <div class="alert alert-info" ng-show="state.pinned" role="alert" file-drop drop="state.pinned">
+      <div class="alert alert-info" ng-show="state.pinned" role="alert">
         <button type="button" class="close" ng-click="unpin_list()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <span>Pinned list:</span>
-        <br/>
         <span>{{state.pinned.name}}</span>
       </div>
       <perfect-scrollbar class="scrolled spacer flex-v" ng-show="isTypeSelected('files')" refresh-on-change="state.mediadirs+state.mediadirs.length">
