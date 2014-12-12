@@ -11,6 +11,7 @@ angular.module('angularPlayerApp')
   .controller('ControlsCtrl', function ($scope, Playerservice, Listsservice) {
     $scope.gradation = Playerservice.gradation;
     $scope.timeLabel = Playerservice.controls.timeLabel;
+    $scope.speedLabel = Playerservice.controls.speedLabel;
 
     $scope.rescan = function () {
       Listsservice.smscan().then(function (/*res*/) {
@@ -97,4 +98,12 @@ angular.module('angularPlayerApp')
     $scope.edit_toggle = function () {
       $scope.flags.edit = !$scope.flags.edit;
     };
+
+    $scope.speed_up = function () {
+      Playerservice.speedUp();
+    };
+
+    $scope.slow_down = function () {
+      Playerservice.slowDown();
+    }
   });
