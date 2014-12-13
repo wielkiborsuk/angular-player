@@ -105,5 +105,5 @@ angular.module('angularPlayerApp')
 
     $scope.slow_down = function () {
       Playerservice.slowDown();
-    }
+    };
   });

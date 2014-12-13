@@ -100,8 +100,6 @@ angular.module('angularPlayerApp')
       $scope.state.pinned = null;
     };
 
-    $scope.has_file = has_file;
-
     function has_file(list, file) {
       if (list && list._id && file && file.path) {
         for (var i=0; i<list.files.length; i++) {
@@ -112,6 +110,8 @@ angular.module('angularPlayerApp')
       }
       return false;
     }
+
+    $scope.has_file = has_file;
 
     function arr_del(arr, obj) {
       var idx = arr.indexOf(obj);
