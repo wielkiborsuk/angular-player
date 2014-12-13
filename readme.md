@@ -1,6 +1,12 @@
-Just a simple server-client to serve mp3s, etc.
+AngularJS based audio player. A client module that requires backend to serve both track hierarchy model and songs themselves.
 
-When basepath for library is set, every subdirectory is scanned for audio files and if it contains any, it's mapped as a list.
-In client lists are shown in nav-list or tabs. The selected list gets rendered with all files.
+Player supports playlists, playback queue and HTML5 audio element with custom controls.
+Other than base controls like: stop, play, pause, next, previous, the player also allows track time seeking, volume control,
+and audio playback speed adjustment.
 
-Player implementation will probably change eventually, but for now HTML5 player will be used.
+Planned features include:
+- session and user-specific content, like playlists
+- external services integration - e.g. pointing to google disk directory as a playlist
+- video support - possibly with the same layout, but e.g. with video appearing at the top
+- file manipulation (if backend supports it) - delete files from 'not editable' lists
+- sortable lists - by name, manual
